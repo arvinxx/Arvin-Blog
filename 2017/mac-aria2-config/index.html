@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Aria2 MacOS 配置经验整理 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2017/mac-aria2-config/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pics.arvinx.com/2017-10-04-2017-10-04-Mac-Aria2-Config-header-img.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Aria2" title="Aria2">Aria2</a>
+                        
+                          <a class="tag" href="/tags/#MacOS" title="MacOS">MacOS</a>
+                        
+                          <a class="tag" href="/tags/#百度云" title="百度云">百度云</a>
+                        
+                    </div>
+                    <h1>Aria2 MacOS 配置经验整理</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2017-10-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>作为一个 Mac 用户，一直以来都饱受下载的困扰，百度网盘体验糟糕，迅雷下载体验糟糕，浏览器下载的速度又十分感人。哪怕是官方的程序也经常下载时中断，有时甚至 Bug 般连续中断。</p>
+<p>无意间一次看到Aria2，一番尝试后欣喜若狂，仿佛捡到了宝。于是在此将使用经验整理汇总。</p>
+<h1 id="安装-Aria2"><a href="#安装-Aria2" class="headerlink" title="安装 Aria2"></a>安装 Aria2</h1><p>在 Aria2 的 <a href="https://github.com/aria2/aria2/releases/tag/release-1.32.0" target="_blank" rel="noopener">Github</a> 上下载自己系统对应的安装包。下载之后直接双击打开安装即可。</p>
+<p><img src="http://pics.arvinx.com/2017-10-04-15071009250291.jpg" alt=""></p>
+<h1 id="配置-Aria2"><a href="#配置-Aria2" class="headerlink" title="配置 Aria2"></a>配置 Aria2</h1><p>Aria2提供两种方式使用，一种是<strong>命令行模式</strong>下载（不推荐使用这种方法）。另外一种则是 <strong>RPC 模式</strong>下载。</p>
+<p>RPC模式下 Aria 启动之后只会安静的等待下载请求，下载完成后也只会安静的驻留后台不会自动退出。</p>
+<p>使用 RPC 模式一般会做一个配置文件，以方便使用。那那下面就来介绍一下配置过程。</p>
+<h2 id="设置RPC配置文件"><a href="#设置RPC配置文件" class="headerlink" title="设置RPC配置文件"></a>设置RPC配置文件</h2><p>为了把配置文件放在 <code>~/.aria2</code> 下，我们在终端依次输入以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~   <span class="comment">#进入 "~" 路径</span></span><br><span class="line">mkdir .aria2    <span class="comment">#创建 ".aria2" 文件夹</span></span><br><span class="line"><span class="built_in">cd</span> .aria2   <span class="comment">#进入".aria2" 文件夹</span></span><br><span class="line">touch aria2.conf    <span class="comment">#创建 “aria2.conf” 文件</span></span><br></pre></td></tr></table></figure>
+<p>接着打开 Finder，利用快捷键 <code>Cmd</code> + <code>Shift</code>  + <code>G</code><br>进入路径：<code>~/.aria2/</code> ，用文本编辑器打开<br><code>aria2.conf</code> ，将以下配置直接拷贝进去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#用户名</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#rpc-user=user</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#rpc-passwd=passwd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#上面的认证方式不建议使用,建议使用下面的token方式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设置加密的密钥</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#rpc-secret=token</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许rpc</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">enable</span>-rpc=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许所有来源, web界面跨域权限需要</span></span><br><span class="line"></span><br><span class="line">rpc-allow-origin-all=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#允许外部访问，false的话只监听本地端口</span></span><br><span class="line"></span><br><span class="line">rpc-listen-all=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#RPC端口, 仅当默认端口被占用时修改</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#rpc-listen-port=6800</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最大同时下载数(任务数), 路由建议值: 3</span></span><br><span class="line"></span><br><span class="line">max-concurrent-downloads=10</span><br><span class="line"></span><br><span class="line"><span class="comment">#断点续传</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">continue</span>=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#同服务器连接数</span></span><br><span class="line"></span><br><span class="line">max-connection-per-server=5</span><br><span class="line"></span><br><span class="line"><span class="comment">#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要</span></span><br><span class="line"></span><br><span class="line">min-split-size=10M</span><br><span class="line"></span><br><span class="line"><span class="comment">#单文件最大线程数, 路由建议值: 5</span></span><br><span class="line"></span><br><span class="line">split=10</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载速度限制</span></span><br><span class="line"></span><br><span class="line">max-overall-download-limit=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"></span><br><span class="line">max-download-limit=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#上传速度限制</span></span><br><span class="line"></span><br><span class="line">max-overall-upload-limit=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#单文件速度限制</span></span><br><span class="line"></span><br><span class="line">max-upload-limit=0</span><br><span class="line"></span><br><span class="line"><span class="comment">#断开速度过慢的连接</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#lowest-speed-limit=0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#验证用，需要1.16.1之后的release版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#referer=\*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#文件保存路径, 默认为当前启动位置</span></span><br><span class="line"></span><br><span class="line">dir=/Users/xxx/Downloads</span><br><span class="line"></span><br><span class="line"><span class="comment">#文件缓存, 使用内置的文件缓存,</span></span><br><span class="line"><span class="comment">#如果你不相信Linux内核文件缓存和磁盘内置缓存时使用, 需要1.16及以上版本</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#disk-cache=0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#另一种Linux文件缓存方式, 使用前确保您使用的内核支持此选项,</span></span><br><span class="line"><span class="comment">#需要1.15及以上版本(?)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#enable-mmap=true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#文件预分配, 能有效降低文件碎片, 提高磁盘性能. 缺点是预分配时间较长</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#所需时间 none \&lt; falloc ? trunc « prealloc,</span></span><br><span class="line"><span class="comment">#falloc和trunc需要文件系统和内核支持</span></span><br><span class="line"></span><br><span class="line">file-allocation=prealloc</span><br></pre></td></tr></table></figure>
+<p>默认下载路径的 <code>/Users/xxx/Downloads</code> 可以改为任何绝对路径。（此处写为 Downloads目录，xxx 是 MacOS的用户名）</p>
+<p>然后保存，退出编辑器。</p>
+<p><strong>配置文件来源：<a href="https://blog.icehoney.me/about" target="_blank" rel="noopener">雪月秋水君</a></strong>，对作者表示感谢~(￣▽￣)~*</p>
+<h2 id="启动-RPC-模式"><a href="#启动-RPC-模式" class="headerlink" title="启动 RPC 模式"></a>启动 RPC 模式</h2><p>在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aria2c --conf-path=<span class="string">"/Users/xxxxxx/.aria2/aria2.conf"</span> -D <span class="comment">#xxxxx 在这里替换为你的系统用户名</span></span><br></pre></td></tr></table></figure>
+<p>aria2 就启动了。</p>
+<h1 id="Aria2的交互界面选择"><a href="#Aria2的交互界面选择" class="headerlink" title="Aria2的交互界面选择"></a>Aria2的交互界面选择</h1><p>Aria2只是一个命令行的下载工具，如果要把它拿迅雷那样来用的话，我们还需要给它找一个「壳」，一个可视化的交互界面。界面目前有如下三种：MacOS app、WebGUI、AMM。</p>
+<h2 id="MacOS-app"><a href="#MacOS-app" class="headerlink" title="MacOS app"></a>MacOS app</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>集成aria2c</li>
+<li>多线程下载</li>
+<li>未完成任务退出自动保存</li>
+<li>支持网盘的aria2导出（需要浏览器插件支持）</li>
+<li>支持PT/BT</li>
+<li>在Badge显示整体下载速度</li>
+<li>任务完成通知</li>
+</ul>
+<p><img src="http://pics.arvinx.com/2017-10-04-15071023636252.jpg" alt=""></p>
+<p>下载地址：<a href="https://github.com/yangshun1029/aria2gui" target="_blank" rel="noopener">Aria2GUI</a></p>
+<h2 id="AMM"><a href="#AMM" class="headerlink" title="AMM"></a>AMM</h2><p>全称 Aria2 Menubar Monitor，是一个在 macOS 菜单栏上监控 Aria2 的工具。</p>
+<h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><ul>
+<li>通过 Aria2 RPC 接口获取 Aria2 状态，显示在 menubar 中（走 websocket）</li>
+<li>多服务器支持，可配置各个服务器状态和任务的刷新时间间隔</li>
+<li>拖曳调整服务器顺序</li>
+<li>ws/wss(包括自签证书)支持</li>
+<li>暗色主题</li>
+<li>用于管理任务的控制模式</li>
+<li>关联磁力链接</li>
+</ul>
+<p><img src="http://pics.arvinx.com/2017-10-04-15071022428881.png" alt=""></p>
+<p>下载地址：<a href="https://github.com/15cm/AMM" target="_blank" rel="noopener">AMM UI</a>  </p>
+<h2 id="WebGUI"><a href="#WebGUI" class="headerlink" title="WebGUI"></a>WebGUI</h2><p>WebGUI是我个人比较推荐的一种方式。只需要将整个页面保存到本地，然后将 <code>index.html</code> 这个文件拖进标签页即可使用。</p>
+<p><img src="http://pics.arvinx.com/2017-10-04-15071020183247.jpg" alt=""></p>
+<p>下载地址：<a href="https://github.com/ziahamza/webui-aria2" target="_blank" rel="noopener">Aria2 WebGUI</a></p>
+<h3 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h3><p>点击 「Download ZIP」 下载整个文件包<br><img src="http://pics.arvinx.com/2017-10-05-052622.jpg" alt=""></p>
+<p>解压后将这个文件夹放到一个固定位置，比如我是放在「应用程序」中，命名为「webui-aria2」<br><img src="http://pics.arvinx.com/2017-10-05-2017-10-05-13.png" alt=""></p>
+<p>将其中的 <code>index.html</code> 拖拽固定到浏览器的标签页，以后就可以直接点击此标签进入 WebGUI</p>
+<p><img src="http://pics.arvinx.com/2017-10-05-%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202017-10-05-14.png" alt=""></p>
+<h1 id="百度网盘-Chrome-插件"><a href="#百度网盘-Chrome-插件" class="headerlink" title="百度网盘 Chrome 插件"></a>百度网盘 Chrome 插件</h1><p>Aria2让我惊喜的地方就是在于这个百度网盘的插件。通过 Aria2下载百度网盘的文件，速度几乎可以接近满速，远比官方的 App 良心多了。</p>
+<p><img src="http://pics.arvinx.com/2017-10-04-080845.jpg" alt=""></p>
+<p>下载地址：<a href="https://github.com/acgotaku/BaiduExporter" target="_blank" rel="noopener">BaiduExporter</a></p>
+<h2 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h2><p>Chrome : 设置 → 插件 → 开发者模式 →<br>导入已解包的插件 → 选择下载文件中的chrome文件夹→ 确认.</p>
+<p>Safari : 不支持</p>
+<h1 id="开机自动启动配置"><a href="#开机自动启动配置" class="headerlink" title="开机自动启动配置"></a>开机自动启动配置</h1><h2 id="编写自启脚本"><a href="#编写自启脚本" class="headerlink" title="编写自启脚本"></a>编写自启脚本</h2><p>进入到应用程序的 <code>aria2c</code> 目录下（如果没有就新创建一个），新建一个文件<code>aria2.sh</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch aria2.sh</span><br></pre></td></tr></table></figure>
+<p>然后输入下面的代码并保存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"start aria2 server"</span></span><br><span class="line"></span><br><span class="line">aria2c &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"start aria2 web ui server"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"exiting"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h3><p>给 <code>aria2.sh</code> 文件执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x aria2.sh</span><br></pre></td></tr></table></figure>
+<p>然后让 <code>aria2.sh</code>  用自己常用的 terminal 工具默认打开。</p>
+<p>右键 文件 -&gt; 显示简介：设置 “打开方式” 为 terminal 即可。</p>
+<h3 id="添加到开机启动项"><a href="#添加到开机启动项" class="headerlink" title="添加到开机启动项"></a>添加到开机启动项</h3><ol>
+<li><p>在 Mac 桌面顶部菜单中，点击苹果图标，在弹出的菜单中，点击进入<code>系统偏好设置</code>。</p>
+</li>
+<li><p>在打开系统偏好设置后，然后点击进入<code>用户与群组</code>设置选项。</p>
+</li>
+<li><p>然后在<code>用户与群组</code>设置界面，先在左侧选择<code>登陆用户</code> - <code>当前用户</code>，然后在右侧切换到<code>登陆项</code> </p>
+</li>
+<li><p>然后点下面的<code>+</code> 进行添加，选择刚才我们创建的文件 <code>aria2.sh</code> ，并勾选隐藏。</p>
+</li>
+</ol>
+<p>这样 Aria2 就可以在每次开机的时候自启动了。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://github.com/aria2/aria2/releases/tag/release-1.32.0" target="_blank" rel="noopener">Aria2 - The ultra fast download utility</a></li>
+<li><a href="https://blog.icehoney.me/about" target="_blank" rel="noopener">雪月秋水君的 Aira2 RPC配置文件</a></li>
+<li><a href="https://github.com/yangshun1029/aria2gui" target="_blank" rel="noopener">Aria2GUI For MacOS</a></li>
+<li><a href="https://github.com/15cm/AMM" target="_blank" rel="noopener">Aria2 Menubar Monitor</a></li>
+<li><a href="https://github.com/ziahamza/webui-aria2" target="_blank" rel="noopener">Aria2 WebGUI</a></li>
+<li><a href="https://github.com/acgotaku/BaiduExporter" target="_blank" rel="noopener">百度云导出 Aira2插件：BaiduExporter</a></li>
+<li><a href="https://sspai.com/post/32167" target="_blank" rel="noopener">Mac 上使用百度网盘很烦躁？花点时间配置 aria2 吧</a></li>
+<li><a href="https://hencolle.com/2016/10/16/baidu_exporter/" target="_blank" rel="noopener">Guide on Packaging and Import Baidu Exporter to<br>Chrome</a></li>
+<li><a href="http://devlu.me/2016/08/22/setting-up-aria2-in-mac-with-webui-and-auto-startup/index.html" target="_blank" rel="noopener">配置 Aria2 实现在 Mac下自启动并且带网页端管理</a></li>
+</ul>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/rhino-color-plugin-development/" data-toggle="tooltip" data-placement="top" title="Rhino 「颜色物件」插件开发记录">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/github-pages-and-jekyll/" data-toggle="tooltip" data-placement="top" title="博客建站记录（2）| Github Pages + Jekyll 完成网站配置">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Aria2" title="Aria2">Aria2</a>
+                        
+                          <a class="tag" href="/tags/#MacOS" title="MacOS">MacOS</a>
+                        
+                          <a class="tag" href="/tags/#百度云" title="百度云">百度云</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2017/mac-aria2-config/";
+    var disqus_url = "http://blog.arvinx.com/2017/mac-aria2-config/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          博客建站记录（3）| 主题配置与修改（上） - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2017/modify-the-theme/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pic.arvinx.com/pic/171016/e8IFkD01AC.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#博客" title="博客">博客</a>
+                        
+                          <a class="tag" href="/tags/#Jekyll" title="Jekyll">Jekyll</a>
+                        
+                          <a class="tag" href="/tags/#Github" title="Github">Github</a>
+                        
+                          <a class="tag" href="/tags/#SaSS" title="SaSS">SaSS</a>
+                        
+                          <a class="tag" href="/tags/#主题" title="主题">主题</a>
+                        
+                          <a class="tag" href="/tags/#Gulp" title="Gulp">Gulp</a>
+                        
+                    </div>
+                    <h1>博客建站记录（3）| 主题配置与修改（上）</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2017-10-04
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>上回做完了所有的框架结构，安装上了主题，但是这个主题任然还是原作者的。接下来的工作就是修改这个主题并适配我的需求。</p>
+<h1 id="URL修改"><a href="#URL修改" class="headerlink" title="URL修改"></a>URL修改</h1><p>Jekyll默认的Url格式为 <code>.../year/month/day/file.html</code><br>月日都显示则过于拖沓，html结尾的链接看着又十分老旧。因此决定修改 url 的显示方式。</p>
+<p>查了一下 <a href="https://jekyllrb.com/docs/permalinks/" target="_blank" rel="noopener">Jekyll 的文档</a>，发现只需要在配置文件中设置对应的链接样式即可。</p>
+<blockquote>
+<p>Setting permalink styles in your configuration file applies the setting globally in your project. You configure permalinks in your <code>_config.yml</code> file like this:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&gt; permalink: /:categories/:year/:month/:day/:title.html</span></span><br><span class="line"><span class="string">&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>If you don’t specify any permalink setting, Jekyll uses the above pattern as the default.<br>When you use permalinks that omit the <code>.html</code> file extension (called “pretty URLs”) Jekyll builds the file as index.html placed inside a folder with the page’s name. For example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; ├── mypageurl</span><br><span class="line">&gt; │   └── index.html</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>With a URL such as <code>/mypageurl/</code>, servers automatically load the index.html file inside the folder, so users can simply navigate to <code>http://somedomain.com/mypageurl/</code> to get to <code>mypageurl/index.html</code></p>
+</blockquote>
+<p>Jekyll 的 URL 有<code>year</code> 、<code>month</code>、<code>day</code>、<code>urlname</code>、<code>title</code>、<code>hour</code>等十几个参数，当然我用不到这么多。<br>为了让链接看着简单一些，我只选取了<code>year</code> 与 <code>urlname</code> 这两个参数。<br>选取年份的目的仅仅是为了做个记录，对于一个博客来说，记录单位用年就够了。而为什么选择 <code>urlname</code> 而不是 <code>title</code>，因为很多时候文章的 <code>titile</code> 不一定是英文的，而 <code>urlname</code> 必须是英文的。所以我可以用中文写 <code>title</code> ，然后自己翻译成 <code>urlname</code>，就能轻松保证 URL 的干净度。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#静态链接设置</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">'/:year/:urlname'</span></span><br></pre></td></tr></table></figure>
+<h1 id="配置调整"><a href="#配置调整" class="headerlink" title="配置调整"></a>配置调整</h1><h2 id="打开链接时打开新的页面"><a href="#打开链接时打开新的页面" class="headerlink" title="打开链接时打开新的页面"></a>打开链接时打开新的页面</h2><p>这个主题的超链接是在同页打开，我个人并不喜欢。因此打算修改这个超链接属性为在新标签栏中打开。<br>在 <code>index.html</code> 文件找到以下代码行，这一行是用于输出可点击的文章列表的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"post-link"</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; post.url &#125;&#125;"</span> <span class="attr">title</span>=<span class="string">"&#123;&#123; post.title &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>href</code> 前 插入 <code>target=&quot;_blank&quot;</code>，即可实现在新标签页中打开。</p>
+<h2 id="取消复制时的商业授权说明"><a href="#取消复制时的商业授权说明" class="headerlink" title="取消复制时的商业授权说明"></a>取消复制时的商业授权说明</h2><p>对于我个人来说，博客的用途一个是便于自己和他人后期查找使用，那么加入复制版权申明还是有点累赘的。因此把这个功能取消掉。</p>
+<p>用 Sublime Text在<code>index.js</code>找到了<code>setClipboardData</code>函数，将其注释掉就完成了这项工作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Copy and copyright</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setClipboardData</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    str += <span class="string">'\n\n著作权归作者所有。\n商业转载请联系作者获得授权,非商业转载请注明出处。\n原文: '</span> + location.href;</span><br><span class="line">    $(<span class="string">'.post-content'</span>).on(<span class="string">'copy'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> data = <span class="built_in">window</span>.clipboardData || e.originalEvent.clipboardData;</span><br><span class="line">        data.setData(<span class="string">'text/plain'</span>, str);</span><br><span class="line">        e.preventDefault();</span><br><span class="line">    &#125;); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="图标修改"><a href="#图标修改" class="headerlink" title="图标修改"></a>图标修改</h1><h2 id="网站-icon-增加"><a href="#网站-icon-增加" class="headerlink" title="网站 icon 增加"></a>网站 icon 增加</h2><p>默认的主题是没有网站 icon 的，从网上查资料得知，通过引入以下代码即可为网站添加 icon。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"shortcut icon"</span> <span class="attr">type</span>=<span class="string">"image/png"</span> <span class="attr">href</span>=<span class="string">"/icon.png"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过测试后有效，觉得可以加入网站配置文件中。在 <code>_config.yml</code> 中添加以下代码</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#网站 ICON （要求为 PNG 格式）</span></span><br><span class="line"><span class="string">favicon</span> <span class="string">:</span> <span class="string">'assets/icons/icon.png'</span></span><br></pre></td></tr></table></figure>
+<p>然后将之前的代码改成模板。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"shortcut icon"</span> <span class="attr">type</span>=<span class="string">"image/png"</span> <span class="attr">href</span>=<span class="string">"&#123;&#123; site.favicon &#125;&#125;"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Logo-替换"><a href="#Logo-替换" class="headerlink" title="Logo 替换"></a>Logo 替换</h2><p>用 AI 制作了矢量 Logo 后转成 svg，发现有756K，远远大于原作者的 Logo 大小。通过栅格化阴影图像，便能大大减小 Logo 的尺寸（最后为15k），提升网页 Logo 的加载速度。<br>另外在修改 SVG logo 过程中，意外发现在 AI 中 SVG 的画板对于最后呈现十分重要，最后图标的大小是完全基于 Ai 中图标和画板的关系的。</p>
+<p><img src="http://pics.arvinx.com/2017-10-13-15078381737079.jpg" alt=""></p>
+<p><img src="http://pics.arvinx.com/2017-10-13-15078382161940.jpg" alt=""></p>
+<p>将我的 Logo 替换之后，发现视觉上太小了，因此需要放大 Logo 的尺寸。</p>
+<p>通过 Sublime Text 的<code>Find in File</code> 功能直接搜索出了 Logo的样式所在位置。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.g-logo</span> &#123;</span><br><span class="line">       <span class="attribute">float</span>: left;</span><br><span class="line">       <span class="attribute">margin-left</span>: <span class="number">2%</span>;</span><br><span class="line">       <span class="attribute">width</span>: <span class="number">50px</span> ;</span><br><span class="line">       <span class="attribute">height</span>: $g-header-h;</span><br><span class="line">       <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">'../icons/logo.svg'</span>) no-repeat center;</span><br><span class="line">       <span class="attribute">background-size</span>: <span class="number">100%</span> <span class="number">100%</span>;</span><br><span class="line">       <span class="attribute">opacity</span>: .<span class="number">7</span>;</span><br><span class="line">       <span class="attribute">transition</span>: all .<span class="number">2s</span>;</span><br><span class="line">       &amp;:hover &#123;</span><br><span class="line">           <span class="selector-tag">opacity</span>: 1;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-tag">a</span> &#123;</span><br><span class="line">           <span class="attribute">display</span>: block;</span><br><span class="line">           <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">           <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里我要修改的是 Logo 的 <code>height</code> 值，是由一个 <code>$g-header-h</code> 变量控制的。这套主题的 CSS 是通过 SASS 设置的，在 <code>helper.scss</code> 这个文件中找到了这个参数。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// size</span><br><span class="line">$g-header-h: 40px;</span><br><span class="line">$g-banner-h: 460px;</span><br><span class="line">$g-footer-h: 40px;</span><br><span class="line">$g-container-w: 960px;</span><br><span class="line">$post-content-w: 720px;</span><br></pre></td></tr></table></figure>
+<h1 id="评论模块"><a href="#评论模块" class="headerlink" title="评论模块"></a>评论模块</h1><p>不知道为什么，默认的评论模块无法加载。因此我重新从 <a href="https://arvinx.disqus.com/admin/universalcode/#configuration-variables*/" target="_blank" rel="noopener">Disqus</a> 上拉了源代码进来测试。</p>
+<h2 id="Disqus-重新安装"><a href="#Disqus-重新安装" class="headerlink" title="Disqus 重新安装"></a>Disqus 重新安装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"disqus_thread"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.</span></span><br><span class="line"><span class="comment">     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    var disqus_config = function () &#123;</span></span><br><span class="line"><span class="comment">        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable</span></span><br><span class="line"><span class="comment">        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable</span></span><br><span class="line"><span class="comment">    &#125;;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  <span class="comment">// DON'T EDIT BELOW THIS LINE</span></span><br><span class="line">        <span class="keyword">var</span> d = <span class="built_in">document</span>, s = d.createElement(<span class="string">'script'</span>);</span><br><span class="line">        </span><br><span class="line">        s.src = <span class="string">'https://arvinx.disqus.com/embed.js'</span>;</span><br><span class="line">        </span><br><span class="line">        s.setAttribute(<span class="string">'data-timestamp'</span>, +<span class="keyword">new</span> <span class="built_in">Date</span>());</span><br><span class="line">        (d.head || d.body).appendChild(s);</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;noscript&gt;Please enable JavaScript to view the &lt;a href="https:/</span><span class="regexp">/disqus.com/</span>?ref_noscript<span class="string">" rel="</span>nofollow<span class="string">"&gt;comments powered by Disqus.&lt;/a&gt;&lt;/noscript&gt;</span></span><br></pre></td></tr></table></figure>
+<p>直接加载没有任何问题。<br><img src="http://pics.arvinx.com/2017-10-12-15078202978578.jpg" alt=""></p>
+<p>但是调用模板里的就会报错。<br><img src="http://pics.arvinx.com/2017-10-12-15078201293058.jpg" alt=""></p>
+<p>说明问题出在模板上。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123; % if site.disqus % &#125;</span><br><span class="line">&#123; % end if % &#125;</span><br></pre></td></tr></table></figure>
+<p>但是具体问题是什么，估计要留到以后去解决了。</p>
+<p>然后奇怪的事情又发生了。<br>当我重新把评论状态语句放回去，Disqus又能正常出现，不明白怎么回事…</p>
+<p><img src="http://pics.arvinx.com/2017-10-12-15078216666762.jpg" alt=""></p>
+<p>再次经过测试发现，<code>disqus_url</code> 这个参数不能用…，看来这里有两个坑待填…</p>
+<p><img src="http://pics.arvinx.com/2017-10-12-15078233797938.jpg" alt=""></p>
+<h2 id="样式重新调整"><a href="#样式重新调整" class="headerlink" title="样式重新调整"></a>样式重新调整</h2><p>这个主题的样式用的是 SASS 的方式，需要安装 gulp，在一番艰苦学习之后终于安装好了 gulp，实现了 CSS 的自动生成。作者在主题的 <code>README</code> 有说明。参考链接：<a href="https://github.com/kaeyleo/jekyll-theme-H2O" target="_blank" rel="noopener">jekyll-theme-H2O</a></p>
+<blockquote>
+<p>主题开发使用的技术栈也比较简单：引入jQuery类库、使用Sass代替CSS编写样式，使用Gulp完成Sass的编译、CSS和JavaScript的代码合并压缩等任务。<br>如果你喜欢折腾，想对模板的代码进行修改，需要使用命令 <code>npm install</code> 安装 <code>package.json</code> 中的依赖，然后 <code>gulp</code> 一下即可开始你的自定义之旅。</p>
+</blockquote>
+<p>实际上，我个人并不喜欢将评论放在网页最底端，我希望是出现在分享下方。因此我调整了评论的位置到分享按钮下方，同时改变了评论的 CSS 类，让它符合逻辑。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123; % if site.social-share %&#125;</span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"social-share-wrapper"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"social-share"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   &#123; % endif %&#125;</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"comment"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"disqus_thread"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后修改 <code>comment</code> 类的样式。</p>
+<p>在 <code>commin.scss</code> 中找到 <code>.comment</code> 类，修改属性。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.comment</span> &#123;</span><br><span class="line">    margin: 100px auto;  //上方为按钮栏，100px看着比较舒服</span><br><span class="line">    <span class="selector-tag">position</span>: <span class="selector-tag">relative</span>;</span><br><span class="line">    <span class="selector-tag">width</span>: 90%;</span><br><span class="line">    max-width: $post-content-w;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再来看感觉作者介绍距离评论距离过大，查看 CSS 样式发现<code>post-content</code>，的底部有 <code>80px</code> 的 <code>padding</code>，因此调整其 CSS 样式。</p>
+<p><img src="http://pics.arvinx.com/2017-10-12-15078235595438.jpg" alt=""></p>
+<p>将 <code>.post-content</code> 里的</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding</span>: 40<span class="selector-tag">px</span> 0 80<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">padding-top</span>: 40<span class="selector-tag">px</span>;</span><br></pre></td></tr></table></figure>
+<p>以上，评论全部配置完毕。</p>
+<p>剩下还有诸如代码高亮修改、黑夜模式优化、文章导航栏等就留到下次再改吧。先睡了…</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="https://jekyllrb.com/docs/permalinks/" target="_blank" rel="noopener">Permalinks - jekyll</a></li>
+<li><a href="https://arvinx.disqus.com/admin/universalcode/#configuration-variables*/" target="_blank" rel="noopener">Disqus - Install instructions for Universal Code</a></li>
+<li><a href="https://github.com/kaeyleo/jekyll-theme-H2O" target="_blank" rel="noopener">jekyll-theme-H2O</a></li>
+</ol>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/github-pages-and-jekyll/" data-toggle="tooltip" data-placement="top" title="博客建站记录（2）| Github Pages + Jekyll 完成网站配置">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/build-a-blog-in-github-page/" data-toggle="tooltip" data-placement="top" title="博客建站记录（1）| 又一次的缘起">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#博客" title="博客">博客</a>
+                        
+                          <a class="tag" href="/tags/#Jekyll" title="Jekyll">Jekyll</a>
+                        
+                          <a class="tag" href="/tags/#Github" title="Github">Github</a>
+                        
+                          <a class="tag" href="/tags/#SaSS" title="SaSS">SaSS</a>
+                        
+                          <a class="tag" href="/tags/#主题" title="主题">主题</a>
+                        
+                          <a class="tag" href="/tags/#Gulp" title="Gulp">Gulp</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2017/modify-the-theme/";
+    var disqus_url = "http://blog.arvinx.com/2017/modify-the-theme/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

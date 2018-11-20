@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Ealge——设计师的第二大脑 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2018/eagle-app/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pics.arvinx.com/2018-01-06-eagle2.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#图片库" title="图片库">图片库</a>
+                        
+                          <a class="tag" href="/tags/#图片管理" title="图片管理">图片管理</a>
+                        
+                          <a class="tag" href="/tags/#Eagle" title="Eagle">Eagle</a>
+                        
+                          <a class="tag" href="/tags/#素材管理" title="素材管理">素材管理</a>
+                        
+                    </div>
+                    <h1>Ealge——设计师的第二大脑</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2018-01-06
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>图像管理向来是很多设计师浪费精力的地方，但是比较“浪漫主义”的设计师往往并不会注意这方面的优化。事实上，科学的工作流程能让我们事半功倍，专注设计本身。而这篇文章就是给大家介绍 <strong>Ealge</strong> 这个图片管理工具（我称之为<u>「设计师的第二大脑」</u>）。助力图片管理，真正打造自己的第二大脑。</p>
+<h2 id="Eagle-的功能特点"><a href="#Eagle-的功能特点" class="headerlink" title="Eagle 的功能特点"></a>Eagle 的功能特点</h2><h3 id="图片库"><a href="#图片库" class="headerlink" title="图片库"></a>图片库</h3><p>如很多图片软件一样，Eagle 采用了库的模式。因为我个人横跨的领域非常广，从平面到产品到交互都有收集。因此库的存在非常好的帮助我区分了特定场景下的图片资料的需求。<br><img src="http://pics.arvinx.com/2018-01-04-150738.png" alt=""> <em>交互设计</em></p>
+<p><img src="http://pics.arvinx.com/2018-01-04-150937.png" alt=""> <em>产品设计</em><br><img src="http://pics.arvinx.com/2018-01-04-151350.png" alt=""> <em>平面设计</em><br><img src="http://pics.arvinx.com/2018-01-04-151455.png" alt=""> <em>Keyshot CGI 渲染</em><br><img src="http://pics.arvinx.com/2018-01-04-153049.png" alt=""> <em>设计竞赛资料库</em><br><img src="http://pics.arvinx.com/2018-01-04-153153.png" alt=""> <em>产品手绘资料库</em><br><img src="http://pics.arvinx.com/2018-01-04-153258.png" alt=""> <em>PPT 资料库</em><br><img src="http://pics.arvinx.com/2018-01-04-153533.png" alt=""> <em>插画资料库</em></p>
+<p>目前库与库之间的合并、分割等功能据说是正在开发阶段，有了这些功能会使得这方面的操作更加方便。<br>但是从另一方面来说，<u>库的模式相当于把素材绑票到了软件本身上</u>。如果 Eagle 在后续过程中没法满足自己的需求，要切换图库软件的话，成本还是非常之高的。<br>那至于为什么我心甘情愿的上了这条船，后面会提到。</p>
+<h3 id="素材导入与收集功能"><a href="#素材导入与收集功能" class="headerlink" title="素材导入与收集功能"></a>素材导入与收集功能</h3><p>在早期版本的 Eagle 中并不支持文件夹路径的导入，但是在后来的版本中把这个功能加了进去。现在导入资源库变得十分方便<br><img src="http://pics.arvinx.com/2018-01-04-160002.png" alt=""><br>例如导入上图中 2014 年的红点获奖作品的资料时，我只需要把「2014」这个文件夹拖到 Eagle 左边栏中，所有的图片就按本地文件夹的分类整整齐齐地导入到 Eagle 里了。这极大的降低了图库资料的导入成本。只需要简单的拖几次文件夹，就能够把所有的图片原封不动地导入到 Eagle 中。</p>
+<p>Eagle 中另外一个让我我非常惊喜的功能便是搜集。我可以利用 Ealge 的<strong>「一键采集花瓣/Pinterest图片」</strong>功能快速将高质量的图片导入到自己的图库中。</p>
+<p>像下图的艺术二维码的资料便是采集了花瓣上的几个画板后，再经过自己的整理之后形成的。而这样的高效形成资料库的方式在没有用 Eagle 之前根本没法想象。<br><img src="http://pics.arvinx.com/2018-01-04-154842.png" alt=""><br><img src="http://pics.arvinx.com/2018-01-04-155022.png" alt=""><br>Ealge 的浏览器插件还能一键收藏网站图片、区域截图、网页截图的功能，可以说把日常中95%以上的收集需求覆盖到位了。<br><img src="http://pics.arvinx.com/2018-01-04-155406.png" alt=""><br>像上图整理的产品说明页都是直接用网页全页截图获得，在没有 Eagle 之前这样的需求只能通过一些截图工具实现，操作并不大流畅。有了这个插件之后妈妈再也不担心我的截图了~</p>
+<h3 id="素材的整理功能"><a href="#素材的整理功能" class="headerlink" title="素材的整理功能"></a>素材的整理功能</h3><p>在讲 Eagle 的整理功能之前，我非常建议大家先去看一下 <a href="https://zhuanlan.zhihu.com/junoma/19901454" target="_blank" rel="noopener">Bridge——设计师Juno的终极图像管理术</a> 这篇文章，他提到的 MECE 原则和标签的属性思路对于我的图片管理帮助非常大。在讲 Ealge 的素材整理功能时，我的思路也是基于上文来的。</p>
+<p>一开始 Eagle 只能做到两层文件夹，后来经过重写之后实现到了无限层级。而且加入了导引线。不过由于文件夹的没有太多好讲的，就在此略过。至于标签则可以说是任何一个图库管理系统的重点了。我从打标签和使用标签两个角度来呈现 Eagle 的标签处理功能。</p>
+<h4 id="输入标签"><a href="#输入标签" class="headerlink" title="输入标签"></a>输入标签</h4><p>Eagle 1.4.2 版本优化了打标签的操作，我正好这个时间需要整理和分析用户画像的标签。就拿了这个功能进了测试。我的记录的标签属性如下图所示：</p>
+<p><img src="http://pics.arvinx.com/2018-01-06-084807.png" alt=""></p>
+<p>改版后的标签在输入体验上非常良好。每次输入我只要快速地点击我需要的近期标签即可。当然在实际使用上还有一些细节需要优化。</p>
+<p><img src="http://pics.arvinx.com/2018-01-05-102252.jpg" alt=""></p>
+<p>打完所有标签之后，通过查阅每个标签的数量，我立刻获得了用户画像的特征情况。例如「目标」有100个，「行为变量」有69个，基本上很少有包含「能力」等等。</p>
+<p>这些用户画像中既有 JPG、PNG，也有 PDF，还有可编辑的 AI 和 Sketch 文档。这种针对所有类型图片的基础信息整理，换成其他任何一个图库工具应该都是没法做到的。</p>
+<p>当然目前我最希望出现的标签分组目前 Eagle 还没有实现。目前掌柜大大也正在开发 Ealge 的标签功能。1.5 版本大改版会有这部分的工具。</p>
+<h4 id="使用标签"><a href="#使用标签" class="headerlink" title="使用标签"></a>使用标签</h4><p>在1.4.2之前，标签功能的使用其实并不顺畅。一种使用方式是智能文件夹，通过标签的筛选完成。但是这种交互模式操作起来并算是很流畅。<br><img src="http://pics.arvinx.com/2018-01-05-154254.jpg" alt=""></p>
+<p>而 1.4.2 跟之前任何版本有一个很大的差异，就是标签与文件夹不再是两个孤立的模块。两个分类工具很好地实现了合作。什么意思呢？看图就知道了。<br><img src="http://pics.arvinx.com/2018-01-05-154941.png" alt=""><br>标签的筛选只会呈现出这个文件夹里图片的所有标签，这样极大的方便了基于标签的筛选。</p>
+<p>当然目前的筛选逻辑功能还不够强大，并不支持逻辑运算符（与、或、非），我在社区里提出这个需求后，掌柜应该也认同了这部分的思路，目前正在开发功能中。</p>
+<h3 id="思维的记录"><a href="#思维的记录" class="headerlink" title="思维的记录"></a>思维的记录</h3><p>如果说 Eagle 和其他图片整理软件还有什么区别的话，我想就是这个标注与注释了。<br>标注功能非常好的实现了设计师分析图片的过程，通过标注我们可以将自己的分析思考保留下来。不过目前这个功能还没有深入开发。<br><img src="http://pics.arvinx.com/2018-01-05-163658.png" alt=""><br>如果希望把这部分真正利用起来，我认为还需要具有的功能有：</p>
+<ul>
+<li>一键显示或隐藏所有标注内容</li>
+<li>可修改标注的顺序</li>
+<li>丰富标注的类型，例如椭圆、箭头 与自由绘制等。</li>
+</ul>
+<p>当满足了以上这些功能需求之后，我相信 Eagle 将能够真正成为记录图片分析流程的利器，乃至获得不输于纸上书写的流畅体验。就像下图一样。<br><img src="http://pics.arvinx.com/2018-01-05-164052.jpg" alt=""></p>
+<p><em>一张写满注释的图</em></p>
+<p>注释功能对于记录一些图片相关信息非常有帮助，也可以记录一些不适合用标注注释的内容。</p>
+<p><img src="http://pics.arvinx.com/2018-01-05-164445.jpg" alt=""></p>
+<p><img src="http://pics.arvinx.com/2018-01-05-164806.jpg" alt=""></p>
+<p>集成标注与注释的 Eagle 能帮助设计师高效地记录自己的思考，真的是经验记录的利器了。</p>
+<h3 id="素材的调用"><a href="#素材的调用" class="headerlink" title="素材的调用"></a>素材的调用</h3><p>Eagle 支持使用智能文件夹，不过我相信很多人并不会去使用这个功能。而我目前也只是在探索智能文件夹的应用场景，并没有一些成体系的思考。</p>
+<p>前文也有提到筛选系统的标签功能，但是其实除了标签以外，还有很多强大的筛选功能。例如颜色筛选、比例方向筛选、类型筛选、标注、注释筛选、<br><img src="http://pics.arvinx.com/2018-01-05-170344.png" alt=""></p>
+<p><em>颜色筛选</em></p>
+<p><img src="http://pics.arvinx.com/2018-01-05-170435.png" alt=""></p>
+<p><em>图片比例筛选</em></p>
+<p><img src="http://pics.arvinx.com/2018-01-05-170615.png" alt=""><em>图片类型与尺寸筛选</em></p>
+<p>除了上述的演示外，还有时间、文件大小、标注、注释等等的筛选功能，基本把筛选需求全覆盖到了。如果说还有什么可以提升的话，就是在各个点上深耕，优化操作逻辑，考虑更多更全的功能。</p>
+<h3 id="图片包分享功能"><a href="#图片包分享功能" class="headerlink" title="图片包分享功能"></a>图片包分享功能</h3><p>我特别喜爱 Eagle 的这个图片分享功能。使用这个功能，你可以将自己的任何一个文件夹导出成一个图片包分享给别人。这个图片包中的图片文件夹结构、图片名称、链接、标签、注释、标注全部都会保留下来。</p>
+<p><img src="http://pics.arvinx.com/2018-01-06-091958.png" alt=""></p>
+<p><strong>如果说前面的所有功能把 Eagle 打造成了一个优秀的图片管理工具，那么这个图片包分享功能将会把 Eagle 变成一个图片资源共享平台</strong>。我们常常说人类的进步离不开传承，而经验的传承更是离不开分享。通过 Ealge 图片包的方式，我们可以将自己多年来总结整理的经验轻轻松松滴水不漏地分享给他人。什么？你说这些经验太过珍贵不肯免费分享？那没事，<strong>卖也可以呀</strong>！</p>
+<p>分享的另外一个好处就是，<strong>我们能够把分析图片的成本时间做到极低</strong>——假设有 100个人，每个人为10张图打上20个维度标签，然后统一发给一个人处理，那么处理完后便是 1000 张分类细致的可用素材。而如果要求是去分析一个风格的图片呢？100个人标注上自己每个人对这个风格的理解或者运用技巧，你就相当于直接获得了 100种不同的理解和技巧。这样的模式我已经在小范围内进行尝试，效果极佳。</p>
+<p><img src="http://pics.arvinx.com/2018-01-06-085840.png" alt=""></p>
+<p><em>20 个人一起合作实现的效果图库，包含标注、标签等各种信息。</em></p>
+<p>Eagle 社区中已经有了一个 <a href="http://app.eagle.cool/forum/category/17" target="_blank" rel="noopener">设计素材分享</a> 的板块，我也贡献了我自己的一些精品资料集。<br><img src="http://pics.arvinx.com/2018-01-05-172622.png" alt=""></p>
+<h2 id="设计师的经验继承模式的思索"><a href="#设计师的经验继承模式的思索" class="headerlink" title="设计师的经验继承模式的思索"></a>设计师的经验继承模式的思索</h2><p>Ealge 的出现让我意识到设计师经验收藏载体的尴尬——图难找，内容难以分析，经验自然难以传承。</p>
+<p>因为设计师大师不可能给每一个新人去说明每一个素材的具体用法。因为没有一个良好的载体，就没有办法有效的传承。这样一来，有经验的设计师的经验就慢慢消亡。除了一些抽象层面的内容能够流传，但是具象到某一张图、某些一点一滴的经验都会随时间流逝。</p>
+<p>但是有了 Eagle 这样的载体，我们可以十分方便地分析图片，图片的分析思路和分析结果将被标签、标注、注释记录在这张图中。一旦我将这张图发送给别人，他将能够看到我的分析思路，从而加深对于这张图的理解。而他还可以在这张图上写下自己的思考。再留给下一个人。</p>
+<p>大家可能都看过类似的桥段，一本武林秘籍，若是有很多人留下自己的修炼心得，那么后人进行修炼必然事半功倍。<strong>在 Eagle 中，图片难得有了合适的经验存储的载体，而这种载体又非常便于进行交流。</strong> 这就是我为什么将其称之为设计师的第二大脑最重要的原因。</p>
+<p>在可以预见的未来，我们会开始使用 Eagle 作为标准的图片交流软件，在图片中方便快速地交流心得体验；一份包含多年设计笔记和应用技巧的 eagle 图片包在 Envato 上以 $59 出售；设计公司通过分布式系统管理着一个结构清晰、分类明确的 eagle 图库，每位设计师都可以轻松获取到这些信息承载丰富的图片资源，也可以在新的图片上记录下自己的思考和想法，Push 到总图库中；教师们在传授平面设计时不再使用 PPT ，而是发给学生一个 Ealge 图片包，让他们自己去查阅各种设计流派与设计作品……</p>
+<p>虽然行文自始至终都没有提到与 Bridge 的对比，但是其实在说明 Ealge 的功能与我的使用场景时，我都有思考在 Bridge 下的可用性。结果往往是 Eagle 获胜。而 Bridge 更加擅长的部分，也正在被 Ealge 一点一点超越。<strong>在万年不变的 Bridge 和保持高速成长的 Eagle 之间，我最终选择了 Eagle。</strong></p>
+<h2 id="一点小的吐槽"><a href="#一点小的吐槽" class="headerlink" title="一点小的吐槽"></a>一点小的吐槽</h2><p>另外其实还蛮想吐槽一点，其实很多人都有提到希望能够导入图片本身的元数据的功能。如果没有这样的一个功能其实会丢失很大一部分「高级的」图库专家。例如前文作者 JUNO。因为他们会花大量的时间精力来去整理图库，处理图片元数据，而这样的一个图片迁移的成本会非常非常高。相当于几千张图一张一张重新要打标签了。</p>
+<p>但是掌柜似乎不愿意为了这群人去开发一个元数据导入的功能，我个人认为多少有些偏颇了。既然能够有导入 Inboard 这样的功能，为什么不能有导入元数据呢？毕竟针对采用 Bridge 这样的图片管理工具的话，要迁移图库，相当于就是要导入图片的元数据。如果有了这样的一个功能，可是相当于拉拢了很大一部分的图片整理的高级用户，他们往往是引导舆论的（毕竟引导我进入图片整理这个大门的，就是 Juno 的那篇文章呀。）</p>
+<p>当然 Eagle 现在也存在各种 Bug ，比如切换资源库的时候会卡在进度条上，导入资源包的时候需要重启才能显示所有导入的资料，文件夹的整理没有办法批量操作等等……不过掌柜也说了，饭要一口一口吃，开发要一步一步来，毕竟只有一个人嘛。</p>
+<p>但是回过头来还是那句话，功能想清楚了，场景想清楚了，暂时性的一些 Bug 都能接受，而同类的图片管理软件的一些竞品，恐怕连一些常见的功能与常见都没有想清楚。</p>
+<h2 id="最后的番外"><a href="#最后的番外" class="headerlink" title="最后的番外"></a>最后的番外</h2><p>关于我多次提到的「掌柜大大」。掌柜 Augus 是台湾同胞，Eagle 是由他利用用业余时间独立完成设计与开发的作品。掌柜他一直都很追求产品的极致、稳定，也非常愿意倾听用户的声音，而不是像某些产品说是“我们很愿意和用户交流”，但实际上做的却是“想法仅限于交流”。</p>
+<p>在群里提出一些需求的思考时，掌柜往往都会仔细思考这个功能需求的场景，提出更加合适的解决方案。甚至有时候为了 Eagle 的一些操作细节讨论上一两个小时。</p>
+<p>在我看来，掌柜是一名非常优秀而且努力的全栈设计师。利用业余时间开发 Eagle 常常到晚上一两点，所以 Eagle 版本迭代迅速也是不无道理，比如我几周前提出了文件夹拖动灵敏度和文件夹显示的需求，在上周就完美提供了解决方案。</p>
+<p>就我个人而言对于一些事物的信任，本质源于对于「人」的信任。无论是苹果之于乔纳森，同济设创学院之于娄永琪，或是米家之于刘德。在和掌柜交流过程通过他的行为足以构建起这种信任关系。也是因为相信掌柜，所以我才愿意把自己的图库交由 Eagle 。</p>
+<p>讲了这么多，最后附上官方地址吧： <a href="https://eagle.cool/" target="_blank" rel="noopener">https://eagle.cool/</a> 。有兴趣的小伙伴可以考虑试用一下，学生购买有半价优惠呦~</p>
+<p><img src="http://pics.arvinx.com/2018-01-06-094303.jpg" alt=""></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/what-is-interaction-design/" data-toggle="tooltip" data-placement="top" title="什么是交互设计">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/capture-ocr-demand-definition/" data-toggle="tooltip" data-placement="top" title="截图OCR产品定义过程总结">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#图片库" title="图片库">图片库</a>
+                        
+                          <a class="tag" href="/tags/#图片管理" title="图片管理">图片管理</a>
+                        
+                          <a class="tag" href="/tags/#Eagle" title="Eagle">Eagle</a>
+                        
+                          <a class="tag" href="/tags/#素材管理" title="素材管理">素材管理</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2018/eagle-app/";
+    var disqus_url = "http://blog.arvinx.com/2018/eagle-app/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          WordPress 建站历史（2）| 建站的中期——服务器环境搭建 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2016/wordpress-blog-server/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#博客" title="博客">博客</a>
+                        
+                          <a class="tag" href="/tags/#WordPress" title="WordPress">WordPress</a>
+                        
+                          <a class="tag" href="/tags/#LNMP" title="LNMP">LNMP</a>
+                        
+                    </div>
+                    <h1>WordPress 建站历史（2）| 建站的中期——服务器环境搭建</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2016-02-03
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>#安装 Nginx<br>安装完 nginx 以后，正常的操作是创建虚拟主机，虚拟主机允许我们在同一台服务器上运行多个网站。正常情况下，我将我的域名解析到我的服务器之后，一般是只能访问 Nginx 初始指定的目录的。<br>而有了虚拟主机，可以将多个域名同时解析到我们这台服务器上，然后通过 Nginx 为不同的域名绑定不同的目录。访问这个域名的时候，会访问对应目录里面的文件。<br>首先先进入到 nginx 配置文件目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/nginx/conf.d</span><br></pre></td></tr></table></figure>
+<p>复制这个目录里的 default.conf 为一个新文件，我给这个文件起名wordpress.conf，复制文件可以使用 cp 命令，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp default.conf wordpress.conf</span><br></pre></td></tr></table></figure>
+<p>再去编辑一下这个复制以后的配置文件，可以使用 vim 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi wordpress.conf`</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">The</span> default server	</span><br><span class="line">	server &#123;</span><br><span class="line">	<span class="attribute">listen</span>       <span class="number">8000</span> default_server;</span><br><span class="line">	<span class="attribute">server_name</span>  _;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">charset</span> koi8-r;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">access_log</span>  logs/host.access.log  main;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">Load</span> configuration files for the default server block.</span><br><span class="line">	include /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line">	   <span class="attribute">include</span> /etc/nginx/default.d/<span class="regexp">*.conf</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line">	<span class="attribute">root</span>   /usr/share/nginx/html;</span><br><span class="line">	<span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">	&#125;</span><br><span class="line">	……</span><br></pre></td></tr></table></figure>
+<p>按一下英文字母i后即可开始修改文件。 <code>server_name</code> 就是主机名，也就是跟这个虚拟主机绑定在一块儿的域名，在这里我要把我的域名 arvinx.com 指向服务器，所以在 <code>server_name</code> 后面写上 arvinx.com 和 <a href="http://www.arvinx.com" target="_blank" rel="noopener">www.arvinx.com</a> 这两个。紧接着 <code>server_name</code> 下面可以放 <code>root</code> 属性，用于指定这个虚拟主机的根目录，也就是网站所在的目录，当然放在 <code>location</code> 区块里面也是可以的。比如我们要把 arvinx.com 这个网站的文件放在 <code>/home/www/arvinx.com</code> 下面，那么这个 root 后面就是 <code>/home/www/arvinx.com</code>。<br>如果你前面这么做了，那么就去掉 <code>location /</code> 里面的 <code>root</code> 这行代码。再在 <code>index</code> 后面加上一种索引文件名，也就是默认打开的文件，这里要加上一个 <code>index.php</code> ，这样访问我的域名的时候就可以直接打开 <code>root</code> 目录下面的 index.php 了，wordpress的页面都是 .php 的主页。修改之后的样子是这样的：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line"><span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line"><span class="attribute">root</span> /home/www/arvinx.com;</span><br><span class="line"><span class="attribute">server_name</span>  www.arvinx.com  arvinx.com;</span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line"><span class="attribute">index</span>  index.php  index.html index.htm;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按ESC退出编辑模式，输入<code>:x</code>，保存并退出。然后重新启动 nginx，重启 nginx 或者重新加载 nginx 可以让配置文件生效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx reload</span><br></pre></td></tr></table></figure>
+<h1 id="让-nginx-可以执行-php"><a href="#让-nginx-可以执行-php" class="headerlink" title="让 nginx 可以执行 php"></a>让 nginx 可以执行 php</h1><p>接下来我们要修改一下 nginx 的配置文件让他支持使用PHP，将我们的wordpress.conf往下拉，可以看到这段字样的代码：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pass</span> the PHP scripts to FastCGI server listening <span class="literal">on</span> <span class="number">127.0.0.1:9000</span></span><br><span class="line">	</span><br><span class="line">	location <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">	   <span class="attribute">root</span>           html;</span><br><span class="line">	   <span class="attribute">fastcgi_pass</span>   <span class="number">127.0.0.1:9000</span>;</span><br><span class="line">	   <span class="attribute">fastcgi_index</span>  index.php;</span><br><span class="line">	   <span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME  /scripts<span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">	   <span class="attribute">include</span>        fastcgi_params;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>这是 nginx 默认给我们的用来执行 php 的配置，从 location 开始取消注释，能让这个配置生效，然后我们再修改一下PHP的程序位置：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">pass</span> the PHP scripts to FastCGI server listening <span class="literal">on</span> <span class="number">127.0.0.1:9000</span></span><br><span class="line"></span><br><span class="line">location <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">  <span class="attribute">root</span>           html;</span><br><span class="line"><span class="attribute">fastcgi_pass</span>   <span class="number">127.0.0.1:9000</span>;</span><br><span class="line"><span class="attribute">fastcgi_index</span>  index.php;</span><br><span class="line"><span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME  <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line"><span class="attribute">include</span>        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意 root 那一行仍然是被注释掉的，还有 <code>SCRIPT_FILENAME</code> 后面修改了一下，把 <code>/scripts</code> 换成了 <code>$document_root</code> ，保存并退出。然后重新启动 nginx：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br></pre></td></tr></table></figure>
+<h1 id="测试是否可以执行-php"><a href="#测试是否可以执行-php" class="headerlink" title="测试是否可以执行 php"></a>测试是否可以执行 php</h1><p>现在，我们已经安装了 php-fpm，并修改了 nginx 的配置文件让它可以去执行 php，下面，我们得去测试一下。我们虚拟主机根目录下面，创建一个 php 文件，命名为 phpinfo.php，然后在这个文件里输入：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> phpinfo(); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>保存文件并退出。在浏览器里打开刚才创建的这个 php 文件（域名地址/phpinfo.php）。打开以后，你应该能看到像下面这样的界面，如果能，说明 nginx 已经可以执行 php 了。</p>
+<h1 id="配置-MySQL"><a href="#配置-MySQL" class="headerlink" title="配置 MySQL"></a>配置 MySQL</h1><p>然后我们需要简单配置一下 mysql ，默认安装以后 mysql 的 root 用户是没有密码的，对于生产环境来说，这肯定是不行的，另外还有一些安全相关的设置，可以使用下面这行命令去配置一下，它是一个向导，问你一些问题，你要给出答案，比如是否要设置 root 用户的密码， 密码是什么等等。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql secure installation</span><br><span class="line"></span><br><span class="line">Enter current password <span class="keyword">for</span> root (enter <span class="keyword">for</span> none):  </span><br><span class="line">解释：输入当前 root 用户密码，默认为空，直接回车。  </span><br><span class="line">Set root password? Y/n  y  </span><br><span class="line">解释：要设置 root 密码吗？输入 y 表示愿意。  </span><br><span class="line">Remove anonymous users? Y/n  y  </span><br><span class="line">解释：要移除掉匿名用户吗？输入 y 表示愿意。  </span><br><span class="line">Disallow root login remotely? Y/n  y  </span><br><span class="line">解释：不想让 root 远程登陆吗？输入 y 表示愿意。  </span><br><span class="line">Remove <span class="built_in">test</span> database and access to it? Y/n  y  </span><br><span class="line">解释：要去掉 <span class="built_in">test</span> 数据库吗？输入 y 表示愿意。  </span><br><span class="line">Reload privilege tables now? Y/n  y  </span><br><span class="line">解释：想要重新加载权限吗？输入 y 表示愿意。</span><br></pre></td></tr></table></figure>
+<h2 id="安装-php-扩展"><a href="#安装-php-扩展" class="headerlink" title="安装 php 扩展"></a>安装 php 扩展</h2><p>现在，我们有了可以提供 web 服务的 nginx ，并且安装了 php-fpm ，配置了 nginx 可以让它去执行 php ，也安装了数据库管理系统。不过在运行真正的网站的时候，我们还需要为 php 安装一些额外的扩展，比如 处理 mysql 数据库的 mysql 扩展，缓存功能的 apc 扩展，处理图像的 gd 扩展等等。安装它们同样可以使用 yum 命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install php-pecl-apc php-mysql php-gd php-mcrypt php-pear php-mbstring php-xmlrpc php-dom</span><br></pre></td></tr></table></figure>
+<p>上面安装了一些 php 的扩展，如果你发现在安装网站的时候提示需要安装其它的扩展，同样可以使用 yum 命令去安装。安装完成以后，需要重启一下 php-fpm ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm restart</span><br></pre></td></tr></table></figure>
+<h1 id="目录与文件的权限问题"><a href="#目录与文件的权限问题" class="headerlink" title="目录与文件的权限问题"></a>目录与文件的权限问题</h1><p>网站上面有些目录或文件需要有写入权限，这样你得为这些目录和文件分配合适的权限，一般可以把它们的拥有者设置成 php 和 nginx 使用的用户，默认 nginx 的用户就是 nginx ，而 php-fpm 使用的用户默认是 apache。我们可以把它们改成一个统一的用户，可以修改 php-fpm 的用户为 nginx 。你可以使用下面的命令去查看 php-fpm 所使用的用户名：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux|grep nginx</span><br></pre></td></tr></table></figure>
+<p>修改所使用的用户，可以通过使用 php-fpm 的配置文件，php-fpm 的配置文件是：<code>/etc/php-fpm.conf</code>，还有在<code>/etc/php-fpm.d/*</code> 这个目录里的所有文件都是 php-fpm 的配置文件。默认这个目录里有一个 <code>www.conf</code> ，你可以编辑这个文件来修改 php-fpm 所使用的用户名称。使用 vi 命令：<br><code>vi /etc/php-fpm.d/www.conf</code><br>打开文件以后你可以搜索下关键词 user 或 apache，输入 <code>:/user</code> 或 <code>:/apache</code> ，会搜索到结果，按 <code>n</code> 可以继续向下查找，按 <code>N</code> 可以向上查找。直到你看到：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">user</span> <span class="title">= apache</span></span><br></pre></td></tr></table></figure>
+<p>把它修改成：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">user</span> <span class="title">= nginx</span></span><br></pre></td></tr></table></figure>
+<p>esc 退出，再输入 <code>:x</code> ，重启下 php-fpm，这样我们的 nginx 服务器还有 php-fpm 会使用同一个用户：nginx，你可以把要可以有写入权限的目录与文件的拥有者修改成 nginx 就行了。可以使用 chown 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R nginx 目录名/文件名</span><br></pre></td></tr></table></figure>
+<p>好了，现在我们就已经拥有一台 LNMP 环境的服务器了。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2016/wordPress-blog-basic/" data-toggle="tooltip" data-placement="top" title="WordPress 建站历史（1）| 建站的前期——域名、服务器、备案">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#博客" title="博客">博客</a>
+                        
+                          <a class="tag" href="/tags/#WordPress" title="WordPress">WordPress</a>
+                        
+                          <a class="tag" href="/tags/#LNMP" title="LNMP">LNMP</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2016/wordpress-blog-server/";
+    var disqus_url = "http://blog.arvinx.com/2016/wordpress-blog-server/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
