@@ -1,0 +1,16 @@
+node_modules/
+_site/
+_posts/.*
+_posts/media
+_posts/_img
+_posts/_drafts
+gulpfile.js
+Gemfile
+Gemfile.lock
+package-lock.json
+*.log
+.idea
+.DS_Store
+db.json
+public
+.deploy*
