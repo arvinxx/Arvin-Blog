@@ -6,7 +6,7 @@
     "start": "hexo s",
     "cname": "cp CNAME ./public",
     "generate": "hexo g",
-    "clean": "rm -rf .deploy_git/ &&rm -rf public",
+    "clean": "rm -rf .deploy_git/ &&rm -rf public &&rm db.json",
     "deploy": "npm run generate && npm run cname && hexo d && npm run clean"
   },
   "hexo": {
