@@ -14,4 +14,4 @@ package-lock.json
 db.json
 public
 .deploy*
-!public/CNAME
+yarn.lock
