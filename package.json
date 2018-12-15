@@ -3,7 +3,10 @@
   "version": "2.4.2",
   "description": "",
   "scripts": {
-    "start": "hexo s"
+    "start": "hexo s",
+    "cname":"cp CNAME ./public",
+    "generate":"hexo g",
+    "deploy": "npm run generate && npm run cname"
   },
   "hexo": {
     "version": "3.8.0"
