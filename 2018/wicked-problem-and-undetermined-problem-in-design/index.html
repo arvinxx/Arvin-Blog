@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          设计中的抗解问题与待解问题 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2018/wicked-problem-and-undetermined-problem-in-design/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pics.arvinx.com/2018-11-16-rawpixel-661940-unsplash.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#工业设计" title="工业设计">工业设计</a>
+                        
+                          <a class="tag" href="/tags/#设计思维" title="设计思维">设计思维</a>
+                        
+                          <a class="tag" href="/tags/#抗解问题" title="抗解问题">抗解问题</a>
+                        
+                          <a class="tag" href="/tags/#设计" title="设计">设计</a>
+                        
+                          <a class="tag" href="/tags/#待解问题" title="待解问题">待解问题</a>
+                        
+                    </div>
+                    <h1>设计中的抗解问题与待解问题</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2018-11-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>这是一个关于设计思维的系列文章，从我自己个人的感受中聊聊我理解中的设计思维。抛个砖，希望能够有更多的交流。</p>
+<hr>
+<p>一<br>先从一个老生常谈的问题引入——「设计是什么」？<br>曾在知乎看到过一个问题「如何自学工业设计？」，现在最高票的回答是这么说的：</p>
+<blockquote>
+<p>首先，什么是工业设计。你知道在美国，工业设计师经常用的title里，除了Designer以外，最常用的是什么吗？是Problem Solver （解决问题的人）。因为工业设计师最主要的工作就是解决问题。如何根据人们的需要，在有限的时间内，找到相对最合理的解决方案，是对工业设计师的最大要求。在此期间，你要分析你是在为谁设计（WHO），你在设计什么（WHAT），你为什么要这么设计（WHY），以及你的设计如何才能解决这个问题（HOW）。因此，发现，分析并且解决问题的能力才是成就一个优秀工业设计师的关键。 </p>
+<p>作者：Binbin</p>
+<p>链接：<a href="https://www.zhihu.com/question/20430378/answer/56397654" target="_blank" rel="noopener">https://www.zhihu.com/question/20430378/answer/56397654</a></p>
+<p>来源：知乎</p>
+</blockquote>
+<p>我们从大一的时候就被灌输了这样的理念。「设计不是艺术，设计是要解决问题」。但是我脑子里一直隐隐觉得不是很对，但是说不出来到底哪里不对。后来看到江南大学的石磊师兄在「什么是设计？设计的本质是什么？」下的回答，我觉得很淋漓尽致地表达了我想表达的观点。</p>
+<blockquote>
+<p>看到这问题下的讨论，感觉一部分知乎er们已经爬出了「设计 = 艺术创作」的泥沼，来到了「设计 = 解决问题」的蛮荒。</p>
+<p>为什么说「设计 = 解决问题」这种解释是蛮荒呢？因为，虽然这个看似万无一失的解释的确走出了误区，但是它不准确，甚至对理解设计没有任何意义。把设计简单的解释为「解决问题的方法」，就好像把人丢在蛮荒，自生自灭。我们有意识去做的哪件事不是在解决问题呢？小到吃喝拉撒，大到治理国家，并非每一件事都是设计，也并非每一个问题都是设计的问题。比如，把五号电池的容量提升到 5000 mAh 就不是设计问题，而是技术问题。</p>
+<p>为了走出「设计 = 艺术创作」的误区，用「设计 = 解决问题」这个辽阔无边的概念来宣传所谓的「大设计」，这多少有些矫枉过正。一个杯子简化掉纹饰，不妨碍大家认得它是杯子；但若是把这个杯子简化成圆柱体，恐怕就没人认得它了。</p>
+<p>作者：石磊</p>
+<p>链接：<a href="https://www.zhihu.com/question/19581185/answer/154065649" target="_blank" rel="noopener">https://www.zhihu.com/question/19581185/answer/154065649</a></p>
+<p>来源：知乎</p>
+</blockquote>
+<p>我认为， 「解决问题」这个定义下存在两个非常模糊的问题：第一：「问题」的定义是什么，第二：「解决」是怎么样实现的。</p>
+<p>这篇文章先来谈谈第一个问题。「解决问题」这个定义下的「问题」，到底是哪一些问题？</p>
+<p>二</p>
+<p>我们首先要限制一下我们所谈的「设计」的内涵。我把「狭义的设计」定义为我们现在所在做的工业设计、交互设计、服务设计等这些专业性工作。「广义的设计」则是我们现在流行说的「大设计」，万物一切皆可设计。这个意义下其实更加接近西蒙的定义，即「优化现有情况的过程」。</p>
+<p>我们先来谈谈「狭义的设计」这个定义下，我们所需要的解决的「问题」到底是哪些问题。一般来说，我会用举例 + 排除法的方式来思考。比如「把五号电池的容量提升到 5000 mAh」这个问题是设计的问题吗？从「广义的设计」上来说，的确是。但是从「狭义的设计」上来说就不是。我们能很直观的感知到，这样的工作并不是传统意义上的设计师应该去做的。如果回过头来思考下设计师做的工作，除开通用的设计调研以外，工业设计师基本跑不开产品定义与造型设计，交互设计师基本就是绘制交互稿、视觉稿。可以感知到的是，<strong>设计师负责的环节基本属于「想法」的环节，所有「实现」与他们无关。</strong><br>那这些「想法」试图在解决什么问题？<br>在前面提到，做设计，基本都要做设计调研，根本目的是为了把握用户的需求。所以所有跟「人的需求」相关的问题，都“可以”说是设计的问题。当然，我这边加了引号，是因为并不是所有「人的需求」都算是「狭义的设计」问题。</p>
+<p>比如我说我现在饿了，想要吃饭。这是需求吧？是问题吧？<br>我怎么解决？<br>吃片面包。<br>好了，我饱了。<br>你说这里有我们所谓的「狭义的设计」吗？<br>并没有。</p>
+<p><strong>因此其实「人的需求」只是「狭义的设计问题」的必要不充分条件。</strong></p>
+<p>三</p>
+<p>那还有什么是设计问题的特征？在这里需要引入一个新的概念做解释，就是：抗解问题（wicked problem）。</p>
+<blockquote>
+<p>在社会工程学中，抗解问题指的是一类难以程式化的社会系统问题，在这其中，信息是含混不清的，存在着多方利益冲突的决策者，并且（解决问题的）结果在整个系统中（的影响）是难以捉摸的。</p>
+</blockquote>
+<p>抗解问题在社会工程学中有10个特征。在这边我就不列出来了，我觉得并不是所有的特征都适用于设计学科。（关于抗解问题的思考，我再给自己挖个坑吧，待填）<br>而布坎南在《设计思维中的抗解问题》中，第一次将设计与社会工程学中的抗解问题这一概念联系在一起，认为设计的问题本质上是一类抗解问题。这里再次引用一下石磊师兄的例子，做一下解释。</p>
+<blockquote>
+<p>举个例子来说吧，2005 年老王在前门胡同里开了个小餐馆卖炒肝，店名叫「大老王的餐馆儿」，找设计师小乙（你还想叫甲？）帮忙设计个招牌，这就是一个难以被程式化的社会系统问题。</p>
+<p>首先，「信息含混不清」。老王喜欢什么颜色？老王媳妇喜欢什么风格？老王对小乙的水平有没有了解？老王对最终方案的预期是什么样的？有没有什么元素在老王眼里是犯忌讳的？老王打算把招牌挂在哪？立在胡同口城管愿意吗？立在门口呢？怎么能吸引前门游客的注意？怎么勾起游客的食欲？太扎眼了会不会破坏前门的市容？要老字号的感觉还是餐饮新秀的 feel ？怎么让游客愿意在这拍照？怎么在游客的照片里起到宣传的作用？突出前门元素吗？还是争当热门话题？……太多的信息无法被明确，太多的问题需要找到答案，而这样的问题随随便便就可以问出几十个。</p>
+<p>其次，「存在多方利益冲突的决策者」。在这里面，老王、工商部门、城管、过路的游客、饿了的游客、消费完的游客等等都是决策者。老王想挣钱；工商部门要监督；城管得维护市容；过路的游客虽然不饿，但是有面相好的小吃也想尝尝；饿了的游客要吃顿正餐，小吃完全满足不了；消费完的游客发个朋友圈又不想太丢面儿……</p>
+<p>最后，「解决问题的结果在整个系统中的影响是难以捉摸的」。小乙提交了自己的方案，老王也满意地给了钱，那事情是不是就会按照老王和小乙的想法发展呢？也许开业头俩月，餐馆食客慢慢增长起来，这可能是因为这个招牌在游客的照片里混了个眼熟，也可能是因为从旅游淡季来到了旺季；也许开业头俩月冷冷清清，第三个月突然火爆，这可能是因为招牌里某个元素被大V拿来做了文章，上了热门话题，也可能是因为这个胡同被某个电影取了景。总之，小乙的方案对餐馆的营业产生了多大的作用，以及在整个社会系统中产生了什么影响，都是无法明晰，难以捉摸的。</p>
+<p>至于「难以程式化」，是指，假如我们在上面这个案例中替换掉一个或几个因素（比如把 2005 年换成 2015 年，或者把老王换成刘大妈，把卖炒肝换乘卖奶茶，把小乙换成小丙（听着就更惨一些了）），那么这个设计的具体过程与最后产出的结果会变的完全不同。也就是说，这个设计只能发生在这一个特定的问题下，而无法被挪用或复制。而对于把五号电池的容量提升到 5000 mAh 这个问题来说，一旦有了解决方案，是可以被其他生产线直接使用的。</p>
+<p>作者：石磊</p>
+<p>链接：<a href="https://www.zhihu.com/question/19581185/answer/154065649" target="_blank" rel="noopener">https://www.zhihu.com/question/19581185/answer/154065649</a></p>
+<p>来源：知乎</p>
+</blockquote>
+<p>了解抗解问题的基本概念之后，必须得说下，抗解问题中的「多方利益冲突的决策者」，在「狭义的设计」这个定义下也一样适用。用户、产品经理、市场运营、工程师（程序员）、销售这些人的观点都会影响设计的执行。<br>其实「信息含混不清」、「存在多方利益冲突者」、「结果难以捉摸」，描述的其实是同一个意思，那就是「不确定性」。<br>比如「信息含混不清」，这里的不确定，是指「老王喜欢什么颜色」、「老王媳妇喜欢什么风格」、「老王对最终方案的预期是什么样的」、「老王打算把招牌挂在哪」、「立在胡同口城管愿意吗」、「怎么能吸引前门游客的注意」等等这些因素到底哪些是真正影响这个招牌的设计的？<br>如果「老王喜欢什么颜色」和「怎么能吸引前门游客的注意」这两个因素是老王最最在意的，那么设计师进行设计就会完全根据这两方面的因素来设计招牌。而如果老王是个妻管严，他更加重视他媳妇喜欢的风格，那么设计师在进行设计时必须要考虑他老婆的风格偏好，不然一定会打回去改稿。<br>你会发现，我们并没有去讨论老王喜欢的到底是什么颜色或者老王媳妇喜欢的到底是什么风格。我们只是在讨论，这么多因素中，哪几个是真正重要的、会影响设计的因素。</p>
+<p>「存在多方利益冲突者」这个也是一样，比如用户、产品经理、市场运营、工程师（程序员）、销售都会影响设计结果。但是到底哪方影响最大？如果没有更多信息，我们其实并不知道，所以这就是不确定性问题的特征。</p>
+<p>我试图用相对抽象点的说法做一个总结：<strong>「不确定性问题」是一类问题空间中的相关因素在解决方案中的权重无法明确的问题。</strong></p>
+<p>如果理清楚了不确定性，那么接下来我又要引入一个新的词，叫做「待确定性问题」。「待确定性问题」虽然在《设计思维中的抗解问题》也有提到，但是布坎南并没有把它拿出来立个新的概念。但是我个人觉得是很有必要的。<br>在刚刚那个老王的场景中，我提到，假设我们已经知道「老王喜欢什么颜色」和「怎么能吸引前门游客的注意」这两个因素是老王最最在意的，那么是不是设计师就能相对容易地去完成招牌的设计？或者假设是「老王对最终方案的预期是什么样的」、「老王媳妇喜欢什么风格」、「老王打算把招牌挂在哪」这三个要素最重要，设计师也一样能够容易地完成完成这些要素之间的协调，产出设计方案。<br>在这两个场景中，我们可以发现，<strong>当要素确定时，哪怕我们并不知道各因素具体的情况是什么样子，但是对产出解决方案来说，已经比之前明朗了很多很多。</strong><br>所以，<strong>「待确定性问题」指的就是一类问题空间中的相关因素在解决方案中的权重已被明确的问题，但这些因素并未被明确确定它们的值。</strong>我这边也想把「待确定性问题」称为「待解问题」。</p>
+<p>四</p>
+<p><strong>从「抗解问题」到「待解问题」，有一个词能很精辟地形容这个过程，那就是「降维」。</strong></p>
+<p>实际上，如果没有新的信息加入，「抗解问题」是无法变成「待解问题」的。在老王那个场景中，如果老王不主动提重要的因素，设计师又不问哪个因素需要重点考虑，那么设计一定无从下手。通过双方的交流，设计师知道了老王很重视颜色的选择，知道了他是个妻管严，知道了他对招牌的位置特别在意。那么原来那个「抗解问题」，就这样被降维成了「待解问题」。这个「待解问题」中包含了三个因素变量：颜色、妻子的风格喜好与招牌的位置。在这个过程中，设计师从外界获取若干有效信息，抬升了部分因素的权重，忽略了不重要的因素，将「抗解问题」降维成了「待解问题」。<br>以上便是我需要详细阐述的「抗解问题」与「待解问题」这两个概念。<br>明白了这两个概念之后，其实就清楚了设计的第一阶段在做什么。我们所做的所有设计调研，目的都是为了「降维」——即为了将「抗解问题」变成「待解问题」。<br>当然，并不是所有的「抗解问题」都是「狭义设计」的问题。比如全球变暖这样的问题是「抗解问题」，但是这并不会由工业设计师、交互设计师去解决。（要是从广义的设计上来说，这也是可以算设计的问题的，但是我们先不作讨论。）<br>那到底哪些问题是「狭义的设计」所涉足的？前面我已经提过了一个关键词，是「人的需求」。因此，结合起来就能得到本文的一个核心观点：</p>
+<p><strong>「狭义的设计」问题，是关于「人的需求」的「抗解问题」。</strong></p>
+<p><strong>「广义的设计」问题，是所有的「抗解问题」。</strong></p>
+<p>（观点我搁在这，期待被人怼和打脸）</p>
+<hr>
+<p>当明确问题是什么的时候，解决这些问题的抽象统一的思维方式，其实就是设计思维。<br>我前面提到，设计的第一阶段是将「抗解问题」降维成「待解问题」。第二阶段则是用设计领域的专业知识给「待解问题」提供出一个最优的解决方案。<br>第二阶段更像是匠人拼熟练度的过程。所有「待解问题」都可以用设计师熟悉的专业知识来快速得到解决方案，这也是设计的专业知识发挥长处的地方。传统意义上的设计师往往纠结怎么从「抗解问题」降维到「待解问题」，而这才是设计思维发挥作用的阶段。</p>
+<p>至于第一阶段的整个运作和处理过程，这篇文章已经够长了，等我下回分解吧。</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/design-thinking-and-abductive-reasoning/" data-toggle="tooltip" data-placement="top" title="设计思维与溯因推理">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/fonstructivism-and-design-thinking/" data-toggle="tooltip" data-placement="top" title="构建主义与设计思维漫谈">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#工业设计" title="工业设计">工业设计</a>
+                        
+                          <a class="tag" href="/tags/#设计思维" title="设计思维">设计思维</a>
+                        
+                          <a class="tag" href="/tags/#抗解问题" title="抗解问题">抗解问题</a>
+                        
+                          <a class="tag" href="/tags/#设计" title="设计">设计</a>
+                        
+                          <a class="tag" href="/tags/#待解问题" title="待解问题">待解问题</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2018/wicked-problem-and-undetermined-problem-in-design/";
+    var disqus_url = "http://blog.arvinx.com/2018/wicked-problem-and-undetermined-problem-in-design/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

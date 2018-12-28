@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          设计的「最小验证通路」与交互产品的 0 到 1 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2018/interaction-product-0-to-1/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pics.arvinx.com/2017-12-11-070327.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#产品定义" title="产品定义">产品定义</a>
+                        
+                          <a class="tag" href="/tags/#截图" title="截图">截图</a>
+                        
+                          <a class="tag" href="/tags/#OCR" title="OCR">OCR</a>
+                        
+                          <a class="tag" href="/tags/#交互" title="交互">交互</a>
+                        
+                    </div>
+                    <h1>设计的「最小验证通路」与交互产品的 0 到 1</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2018-12-15
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>导读：我相信很多学我们这个专业的同学，是怀着一颗「设计改变生活」的上了设计这条贼船。本科的课堂上，我们一直被教导着说去创新，去做改变世界的产品。乔布斯是我们致敬的偶像，微信淘宝是我们对标的假想敌。我们的设计的流程也是高端大气上档次，战略分析、商业模式、用户研究、产品框架、功能需求、交互视觉…然后大家噼里啪啦地一通分析，做出一个又一个看似很创新的交互界面，画出一张又一张炫技的视觉稿，但最后的结果好一点的是作品在硬盘里永久躺尸，差一点的就是在课程结束后灰飞烟灭。最后四年过去，该工作的工作，出国的出国，读研的读研。原来想做出激动人心产品的心就逐渐被消磨得一干二净，萦绕在心头的激情大概也就这样烟消云散。</p>
+<p>对于设计专业的学生来说，这样的学习实践模式其实是一个无底洞。躺在硬盘中的设计稿不会给你任何反馈，不会告诉你你的思考是否有漏洞，你的设计哪里有亮点，应该如何改进等等。我在之前的文章中说过，设计本身是个不断证否的过程，你只有不断地去测试，才能获得直接有效的反馈，才能有所成长。因此只有打通一条验证通路，才可能在短时间内快速提升自己的设计能力。</p>
+<p>而这篇文章就是和大家分享一个我自己做过的一个小案例，和大家分享下，我是如何打通一条最小验证通路的。</p>
+<hr>
+<p>这个案例是一个已经上架的小工具 iText。iText 是一款从图片中识别文字的 OCR 工具。</p>
+<p><img src="http://pics.arvinx.com/2017-12-11-064645.png" alt=""></p>
+<p>它的典型使用场景：</p>
+<ul>
+<li>从扫描版 PDF 中提取文字</li>
+<li>从朋友发来的图片中识别文字</li>
+<li>从任意图片中识字</li>
+</ul>
+<p>用法如下图所示：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1flx120m504g30la09qkin.gif" alt=""></p>
+<h2 id="截图-OCR-的需求"><a href="#截图-OCR-的需求" class="headerlink" title="截图 OCR 的需求"></a>截图 OCR 的需求</h2><p>为什么我会挖掘到这个需求呢？一切从一个大纲软件「幕布」开始。</p>
+<p>用一句话来介绍「幕布」这个大纲式写作工具的话，它就是文字工具的思维导图。</p>
+<p>它有什么用呢？简单来说就是可以像思维导图那样来记录文字。<strong>好处就是，可以用结构化的方式来记录资料，并且无限细分下去。这就非常适合来整理文本资料或者梳理知识体系，非常适用于如今的碎片化学习。</strong></p>
+<p><img src="http://pics.arvinx.com/2017-12-06-074237.png" alt=""></p>
+<p>事实上我在整理自己的知识体系的时候，有两类资料是最常用的，一类是网页资料。网页资料非常容易处理，我直接复制粘贴就好。而另一类则是书籍，很多都是以 PDF 形式存在的。而中文类的 PDF，要把内容拷贝出来，就非常困难。没有 OCR 工具根本实现不了。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-074930.png" alt="红框内容是我自己手打的"></p>
+<p>很多不错的资料都是在一本本书籍当中的，当我尝到结构化梳理知识的甜头之后，我越发需要把一本本书中的信息梳理到我的幕布知识树中。而类似这样的次数越来越频繁，迫使我去寻找 OCR 工具。</p>
+<h2 id="现有的竞品"><a href="#现有的竞品" class="headerlink" title="现有的竞品"></a>现有的竞品</h2><p>我一开始是找到了微软的 Onenote 自带的图像识别功能，但是它的问题有两个：一个是图片复制进去之后，我必须等图片同步完，过一段时间才能看到复制 OCR 文字的按钮，但是一方面 OneNote 上传很慢，另一方面这个识别过程也没有任何识别进度的提示，我往往要等好久才能看到复制 OCR 文字这个选项；第二个是复制出来的文字之间，必然包含着空格。我必须做一次格式化，才能保证格式正确。这听起来并不怎么麻烦，但是一旦操作数量乘以十倍，那么这种方法就显得爆炸麻烦了。总之，OneNote 貌似是最「轻量级」的解决方案，但是最后的体验却是非常「重」。当次数比较少的时候，这个功能还凑合着用，但是面对以上我所描述的需求场景时，次数变得极为频繁的时候，就变得非常「难用」了。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-075325.jpg" alt=""></p>
+<p>然后接下来是 ABBYY FineReader、OCRKit、Prizmo 等一系列 Mac 上有名的 OCR 工具。这些工具清一色的需要<strong>手动导入图片</strong>，等待识别，再<strong>导出文件</strong>。<strong>注意！！</strong>我识别一段话需要特么截个图保存到本地，然后再导入图片，再导出文件，再打开文件，再复制进幕布，这个过程都够我全部手打完所需要的文字了。何况 ABBYY FineReader 这个号称是识别率最高的OCR 工具，在面对中英文混合甚至一些普通中文图片的时候，识别率都差的要死。</p>
+<p>各位看官注意，我再总结一下我的需求：<strong>在幕布和书籍文档各占用一半屏幕的情况下，最「丝滑」地完成文字转移工作。</strong></p>
+<p><img src="http://pics.arvinx.com/2017-12-06-080942.png" alt=""></p>
+<p>「丝滑」的终极要求如下：</p>
+<ul>
+<li><strong>识别过程中最小程度影响工作流。</strong>（反例：FineReader 等普遍 OCR 工具和网页端的截图 OCR 工具）</li>
+<li><strong>识别出来的文字最好能够还原书籍中的样式。</strong>比如保证段落不变，加粗不变、序号不变等（反例：OneNote 的OCR工具和 FineReader 一些特殊场景下的识别结果）</li>
+</ul>
+<p>第二个要求基本上很难有完美能够实现的，但是主要的问题在于：90%以上的 OCR 工具第一条都没法满足，对整个工作流的影响太大，使用的体验太「重」。另外，FineReader 的全文识别在这个场景太重，根本用不到，实际需要的不过是一些片段。而能够满足第一条的 OCR 工具要么识别率不行，要么是太难用的东西。</p>
+<p>所以我最后得出的结论是：<strong>Mac 端根本 「没有」 能够满足以上需求场景的 OCR识别工具。</strong><br>而面对这个需求场景下，我自己能想出来的最直观的方法是：<strong>截图-&gt;进行 OCR 识别-&gt;将结果复制到剪贴板-&gt;粘贴</strong>。</p>
+<h2 id="发现-OCR-API"><a href="#发现-OCR-API" class="headerlink" title="发现 OCR API"></a>发现 OCR API</h2><p>其实需求出来之后，对于设计师来说，最重要的问题就是实现了。在这个环节中，我觉得一个突破性的点在于发现了OCR 的 API。</p>
+<blockquote>
+<p>注：API 就是可以直接调用的程序接口。相当于别人已经制作好的一把螺丝刀，拿起来就可以直接使用。</p>
+</blockquote>
+<p>本来已经忘了，但是我翻了下自己的浏览器历史记录。历程大概就是用 Google 搜了一堆之后试用了FineReader和一些其他的识别工具，但是不满意。过了一个月想起这个事情换了个关键词搜，结果就搜到了百度 OCR。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-065303.png" alt=""></p>
+<p><img src="http://pics.arvinx.com/2017-12-06-082837.png" alt=""></p>
+<p>可能当时百度 OCR 在打广告，所以排到了当时第一，不然如果按照今天的搜索结果来，我可能就会用腾讯的 API 了。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-083204.png" alt=""></p>
+<p>然后我当时（去年11月）正好在学 JS，作为一个半吊子前端，就自己照着百度的 OCR 工具写了个脚本，连正则表达式还是照着网上抄的，更不会做什么封装。看我的记录应该是11月1号写完的，花了1个小时不到，就30行不到的代码。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-083429.png" alt=""></p>
+<p>地址可以去我的 github 上围观：<strong>arvinxx/CapOCR</strong>。 <a href="https://github.com/arvinxx/CapOCR" target="_blank" rel="noopener">CapOCR</a> </p>
+<p>我的操作逻辑是：</p>
+<blockquote>
+<p>快捷键截图 -&gt; 按快捷键利用iPic上传图片 -&gt; 快捷键粘贴获取的链接到第22行 -&gt; 快捷键运行脚本 -&gt; 快捷键复制打印值。</p>
+</blockquote>
+<p>整个过程只需要 5 次快捷键。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-083529.png" alt=""></p>
+<p>这里做个简单的解释：那为什么会用这种操作逻辑，原因就是我不懂怎么读取本地图片，更不懂怎么把截图的图片复制到剪切板。看到百度 API 可以直接用网络地址，正好我也有用 iPic 上传图片，那就偷个懒直接上传地址。然后这个可笑的正则表达式更是为了方便我直接粘贴 iPic 返回的地址，不用去手动处理掉 Markdown 语法，返回的其实就是图片的网络链接。</p>
+<p><strong>哪怕在真正的使用过程中，我必须要开着 Atom，但是还是用着非常爽。</strong>哪怕还是要切换一个次页面，按5下快捷键，但是整个体验已经远远甩 ABBYY FineReader 等 OCR 工具好几条街了，同时识别率惊人地好。</p>
+<p>作为一个效率类工具的「领先用户」，我一直追求更加丝滑的用户体验。但是由于我的编程水平才刚刚入门（既不懂正则，也不懂数据结构，更不懂单元测试，最多就能做个 Demo），很难在短时间内实现到我最终的意图。<br>但是我寻思着，要是能够更加爽就好了。</p>
+<blockquote>
+<p>注：关于「领先用户」，Eric von Hippel 是这么定义的：领先用户是<strong>在市场普及之前的数月或数年就体验需求并能从产品创新中大幅受益的用户</strong>。（来源：THE SOURCES OF INNOVATION. Eric von Hippel.1988）</p>
+</blockquote>
+<h2 id="促成产品"><a href="#促成产品" class="headerlink" title="促成产品"></a>促成产品</h2><p>然后我就找上了我一个资深的程序员朋友 Jason。（能认识 Jason 也是因为iPic。我用 Markdown 来进行信息的管理，处理图片的时候这个工具非常受用。)</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-072531.png" alt=""></p>
+<p><img src="http://pics.arvinx.com/2017-12-06-072619.png" alt=""></p>
+<p>再接着，在我跟 Jason 提这个需求（11月9日）的四天之后(11月13日)，Jason 就把内测版产品发给我测试了。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-072936.png" alt=""></p>
+<p>当然，我知道这个工具的开发肯定用不了四整天（实际上他也有提，原型就一天时间），但是说实话，我当时是十分惊讶的。因为我并没有指望着 Jason 会去做我的提议。我相信大部分人的想法肯定都是这样：</p>
+<blockquote>
+<p>“额，因为产品需求太普遍，类似于 hello world 一样，每个学习过模式识别的人都做过类似的东西，这种东西是没办法商品化的。而且市面上免费的同类产品汗牛充栋，很容易找到替代品” </p>
+</blockquote>
+<p>另外在写 CapOCR 时我观察到<strong>百度 OCR 识别接口有人在2015就做过封装，放在了 V2EX上。</strong>但是没有一人能够像我发现这种具体的需求场景，然后促成某个产品。如果有，我相信2015年就有 iText 这类工具出现了，但是很遗憾，两年过去了我还是没有找到。没有一个人在懂了「模式识别」或者在知道 OCR 识别 API 之后再去深入挖掘过真正的用户需求点，做个什么产品出来。<br>大部分程序员都是会掉入技术本身这个陷阱，这一点在我学习编程的过程中感触非常深刻。所以如果 Jason 对这个不感兴趣，我以后这方面懂了的话还是会做的，毕竟需求在那里，大家只是视而不见。</p>
+<p>再回到实现出 iText 这个问题上，正是因为我知道大部分程序员抱有如上的想法，所以我只是抱着侥幸心理去和 Jason 提，并不指望他就会照着我的意见去做。而且目前我自己写的那个小脚本也能凑合着用。</p>
+<p>但是让我感到惊讶的则是他真的去做了这件事情。至少在这次 iText 里，Jason 的行动非常完美地验证了他朋友圈的这句话。</p>
+<blockquote>
+<p>「感受用户需求，思考解决方案，促成产品，满足需求。无Title」。</p>
+</blockquote>
+<p><img src="http://pics.arvinx.com/2017-12-06-090011.png" alt=""></p>
+<p><strong>作为结果，iText 可谓是开创了一个细分领域，在一片红海中找到了蓝海，没有毛病。</strong></p>
+<p>而且正如 Jason 在另外一贴中所述，他在完成第一版原型之后，一直在做的都是「段落识别」这个非常强烈的需求，而这个需求，是我跟他提的另外几个重要特性之一，并且足以拉开和其他 OCR 工具的距离。</p>
+<p>当然有人可能会说，如果你把这个需求告诉我，我也一样会给你开发出来巴拉巴拉的。但是很可惜，我并不认识你。能够认识  Jason 也是因为在某些人眼中 “污染环境 Mac 环境” 的 iPic 这个工具。他们放不下身段去做一些没技术含量的工具，自然看不到那些体量巨大的用户需求，接触不到新的想法。</p>
+<p>毕竟这不是技术上的问题，而是思维方式上的差距。技术的目的是更好的解决问题，而不是作为内耗的工具。</p>
+<h2 id="产品感触"><a href="#产品感触" class="headerlink" title="产品感触"></a>产品感触</h2><p>截止我成文， iText 在 App Store 上收到了307份评价，按10%的点评数量预估，目前大约有几千数量的用户在使用这个工具。前段时间很让我惊喜的是，听我学弟提起，他的一个学妹也在使用这个工具。当听到这，我内心还是充满喜悦的。毕竟作为一名设计师 or 产品经理，最令人开心的不就是有人在用你做的东西吗？</p>
+<p><img src="http://pics.arvinx.com/2018-12-15-162651.png" alt="image-20181216002649257"></p>
+<p>虽然我并没有完成最后的代码实现， Jason 当时也没有提到我给他的启发，不过对我来说无所谓，毕竟结果是这个工具满足了我的需求，还会不断优化，那我找 Jason 目的就已经达成了。</p>
+<p>iText 一个月6块钱不足一顿饭，但是这对我来说，却是我自我完善知识系统必不可少的工具之一。而实际上一开始就打了对折，一年也就30块，可以说是非常划算了。举个例子，用 iText 配合欧路词典我在几天之内就翻译完了那篇18页的《设计思维中的抗解问题》，没有 iText 高效提取文字，我至少要多花十几小时，并且还要有两三倍以上的耐心，这种程度的价值转换，可以说是超值了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这篇文章主体其实成文蛮早了，这次拿出来和大家分享，也是将之前的一点经验回首，再次做一个提炼总结。</p>
+<p>这个产品算是让我完成了从<strong>产品定义到交互设计到功能原型的最小验证通路</strong>。虽然最后的工程实现没有参与，但是对我来说也足够了。它也可以算是我本科的一个比较成功的交互产品了。和别人聊起来，也常常会和别人安利我这个小工具。毕竟有人用，大家的评价也不错，值得我吹嘘小一阵子了呢。</p>
+<p>像 iText 这样的产品需求在我脑子还有不少，只是能力和精力也有限，大概这也是我为什么想找很多小伙伴，一起去做这样的小产品的原因吧。我蛮希望有更多的人能够像 Jason 这样来实现更多的产品需求，并持续完善下去，给大家的生活带来更多的便利，所以当时 Jason 在朋友圈里发的这段话时，我也是颇有感触呢。</p>
+<p><img src="http://pics.arvinx.com/2017-12-06-104542.png" alt=""></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/design-thinking-and-abductive-reasoning/" data-toggle="tooltip" data-placement="top" title="大设计与博雅学科">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#产品定义" title="产品定义">产品定义</a>
+                        
+                          <a class="tag" href="/tags/#截图" title="截图">截图</a>
+                        
+                          <a class="tag" href="/tags/#OCR" title="OCR">OCR</a>
+                        
+                          <a class="tag" href="/tags/#交互" title="交互">交互</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2018/interaction-product-0-to-1/";
+    var disqus_url = "http://blog.arvinx.com/2018/interaction-product-0-to-1/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

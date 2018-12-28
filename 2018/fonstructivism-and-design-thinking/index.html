@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="名为空谷,此为札记。">
+    <meta name="keyword" content="设计,产品,全栈,设计思维,前端,设计,Rhino,Keyshot,React,C4D">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          构建主义与设计思维漫谈 - 空谷札记 | ArvinX&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://blog.arvinx.com/2018/fonstructivism-and-design-thinking/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">空谷札记</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li><a href="/tags">Tags</a>
+                    </li>
+                    <li><a href="/archives">Archives</a>
+                    </li>
+                    <li>
+                        <a href="http://arvinx.com/" target="_Blank">Portfolio</a>
+                    </li>
+                    <li><a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+  // Drop Bootstarp low-performance Navbar
+  // Use customize navbar with high-quality material design animation
+  // in high-perf jank-free CSS3 implementation
+  var $body = document.body;
+  var $toggle = document.querySelector('.navbar-toggle');
+  var $navbar = document.querySelector('#huxblog_navbar');
+  var $collapse = document.querySelector('.navbar-collapse');
+
+  $toggle.addEventListener('click', handleMagic);
+
+  function handleMagic(e) {
+    if ($navbar.className.indexOf('in') > 0) {
+      // CLOSE
+      $navbar.className = ' ';
+      // wait until animation end.
+      setTimeout(function() {
+        // prevent frequently toggle
+        if ($navbar.className.indexOf('in') < 0) {
+          $collapse.style.height = '0px';
+        }
+      }, 400);
+    }
+    else {
+      // OPEN
+      $collapse.style.height = 'auto';
+      $navbar.className += ' in';
+    }
+  }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('http://pics.arvinx.com/2018-11-16-0.jpg')
+    }
+</style>
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#设计思维 构建主义 设计教育" title="设计思维 构建主义 设计教育">设计思维 构建主义 设计教育</a>
+                        
+                    </div>
+                    <h1>构建主义与设计思维漫谈</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by 空谷 on
+                        2018-11-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p>秋学期上了一门《科学教育导论》的课程，其中提到的构建主义和我去年研究的设计思维很有联系，颇有感触，因此写下自己的一些想法，抛砖引玉。</p>
+<h2 id="构建主义"><a href="#构建主义" class="headerlink" title="构建主义"></a>构建主义</h2><p>先讲讲构建主义是什么。<br>建构主义是一种关于知识和学习的理论，强调学习者的主动性，认为学习是学习者基于原有的知识经验生成意义、建构理解的过程。<br>在这个理论之前，主流的教育观点来自行为主义，其认为心理学不应该研究意识，只应该研究行为，把行为与意识完全对立起来。<br>普遍的教育认知是行为主义的模式，用公式来解释，就是 S→R 这样的公式。老师的教学就是S，是外界刺激。学生掌握知识，就是R，是刺激的反馈。但是这种认知模式存在的一个问题是：<strong>为什么老师传授了同样的内容，有的人掌握的好 ，而有的人掌握不好？</strong>行为主义的理论无法解释这个问题。<br>因此，皮亚杰(J.Piaget)，提出了另一种公式来解释这个问题，即 S→（AT）→R。<strong>一定的刺激（S）被个体同化（A）于认知结构（T）之中，才能作出反应（R）</strong>。同化是指个体把外界刺激所提供的信息整合到自己原有认知结构中的过程。简单来说就是，学生根据自己的认知方式学会老师教的东西。比如学英语读音的时候，对我们最轻松的方式就是用中文谐音，比如 strong，我们会记成“死壮”，ambulence，记成“俺不能死”，便是这个道理。<br>所以针对学习来说，一个人的学习能力其实由他的认知结构决定。一个人的认知结构（也称为图式）适合学的东西，就能快速学会对应的东西。图式不正确，就学不懂，或者学起来慢。<br>总结来说，构建主义的观点就是人是在与周围环境相互作用的过程中，逐步建构起关于外部世界的知识，从而使自身认知结构得到发展。所以构建一个合适的环境很重要，这是外因；形成合理的图式也很重要，这是内因。然后再是人与环境的互相作用。<br>相互作用涉及两个基本过程：“同化”与“顺应”。同化在前面已经讨论过，就是个体把外界刺激所提供的信息整合到自己原有图式内的过程。顺应是指个体的图式因外部刺激的影响而发生改变的过程。就是说，外部环境发生变化，原有认知结构无法同化新环境提供的信息时，人的认知结构发生了重组与改造。<br>抽象来说，<strong>同化是认知结构数量的扩充（图式扩充），而顺应则是认知结构性质的改变（图式改变）。</strong></p>
+<p>举一个例子，小孩子认识了爸爸的模样，老爸的模样不是写在爸爸的脸上，而是孩子的脑袋里。有一天爸爸的脸上长了个痘，孩子就把脑子里的「爸爸的脸」加了个痘。这叫同化。又有一天爸爸把胡子剃了，导致孩子认不出爸爸的脸。因为他脑子里的脸差距巨大，产生了强烈的不平衡。几天以后，孩子把脑子里老爸的脸删除，建立了老爸的没胡子的新脸。这是顺应。</p>
+<h2 id="设计思维"><a href="#设计思维" class="headerlink" title="设计思维"></a>设计思维</h2><p>可能会有很多人会以为我说的设计思维，是 IDEO 或者 D.School那套「共情 - 定义 - 脑暴 - 原型 - 测试」的流程。</p>
+<p><img src="http://pics.arvinx.com/2018-11-02-112149.jpg" alt="image-20181102181326857"></p>
+<p>不过我指的不是这个。</p>
+<p>我认为，这套流程是很 professional，或者说狭隘的一个流程，是专门拿来「做设计」用的，而不是用于解决 general 问题的流程。（不然请用这套流程来聊聊应该怎么学设计呗？）</p>
+<p>这会让我觉得很讽刺，明明整个设计圈都在提倡设计思维，说普通人也应该去学习学习设计思维，但是落到使用上却还是设计师自嗨的工具。</p>
+<p>这边的问题我觉得在于对设计的定义。</p>
+<p>赫伯特·西蒙在《人工科学》这本书里，把设计定义为“优化现有情况的过程”。自然科学追求“是什么”和“必然性”，而设计关注的是“可能成为什么”和“偶然性”。我会更认同这种理解，而不是狭义的设计定义。</p>
+<p>昨天在 TTF 论坛上，辛向阳老师的分享里也有提到过。</p>
+<p><img src="http://pics.arvinx.com/2018-11-02-112148.jpg" alt="image-20181102181529324"></p>
+<p>直白的说法，只要是不满于现状，想要去变得更好的行为，都可以称为设计。</p>
+<p>根据西蒙的定义，设计涉及到两个部分。</p>
+<p><strong>第一个部分是不满于现状，现状指代的就是环境，或者说场景。</strong></p>
+<p><strong>第二个部分是想做的更好，书面化的表达可以称为“解决问题”或者 “形成更好的解决方案”。</strong></p>
+<p>顾名思义，设计思维就是在做设计时候的一种思维方式。优秀的设计思维应该能够适应更多的场景，得出更优的解决方案。</p>
+<p>（当然关于场景，还有个需要探讨的问题，就是「设计等不等价于解决问题」。但是和这个题关系好像不大，就先不严谨一点了，以后有机会再做讨论。</p>
+<p>根据布坎南的《设计思维中的抗解问题》（Wicked Problem in Design Thinking）的定位理论（The Doctrine of Placements）来描述设计思维的活动方式。</p>
+<p>他将设计对象描述成了四个类别，符号（signs）、物质（things）、行为（ actions）、思想（thoughts）。他发现设计思维的活动方式，往往是在一个类别下，用这种类别的思考方式来产出结果。而用不同类别的角度来看，往往能够产出很创新的结果。<br>比如，建筑传统上把建筑物当作大型系统或环境。然而近几十年，一些建筑师在符号这个类别下寻找建筑的新形式，产生出后现代主义的实验和趋势。</p>
+<p>比如像盖里的古根海姆美术馆。</p>
+<p><img src="http://pics.arvinx.com/2017-12-18-105906.jpg" alt="img"></p>
+<blockquote>
+<p>从哲学上来说，解构主义是在1967年被哲学家雅克-德里达提出来的，但是作为一种设计风格的形成，是在20世纪80年代左右。从字面上来看，解构主义是对正统原则与正统标准的否定和批判。这里所谓的正统标准，指的是现代主义、国际主义的标准与原则。<br>解构主义通常采用的手法：歪扭、错位、变形。<br>解构主义最大的特色是：无绝对权威，个人的、非中心的；恒变的、没有预定设计的；没有次序、没有固定形态，流动的、自然表现的；没有正确与否的二元对抗标准，随心所欲；多远的、非统一化的，破碎的、凌乱地。<br>在审美方面，如果说现代、后现代、晚期现代建筑所关注的都是审美的“结果”，那么解构主义强调的是“过程性”，即“读者”阅读时的审美愉悦。<br>从哲学倾向来看，构成主义的主流与追求都是科学与理性，解构主义所追求的却是非理性与反逻辑的偶然机遇，它之所以用理性元素，其目的是通过理性元素的并置与冲突，去追求非理性的目的，向理性统治下的人们证明非理性的合理性。<br>总而言之：借助理性的元素，表达非理性的内涵，这就是解构建筑的基本哲学特征。</p>
+<p>作者：LeTaon<br>链接：<a href="https://www.zhihu.com/question/34510365/answer/60337147" target="_blank" rel="noopener">https://www.zhihu.com/question/34510365/answer/60337147</a><br>来源：知乎</p>
+</blockquote>
+<p>这些建筑师中，据说不少人是受到法国哲学家德里达的文字和他解构想法的影响，而还有些则被俄国构成主义运动中的几何学不平衡想法所影响。他们都是把建筑重新放到新的领域环境中来思考问题，然后产生出新的设计和思想来的。</p>
+<p>还有我们现在会说，用服务设计的角度来看待产品设计，可以说是一样的道理。</p>
+<p><strong>这和查理·芒格的多元思维模型不谋而合。</strong></p>
+<p>在《穷查理宝典》这本书中，芒格的「多元思维模型」 借用并完美地糅合了历史学、心理学、生理学、数学、生物学、物理学、化学、统计学、经济学等重要学科的重要概念、方法、公式。综合起来后，多元思维模型就成了收集和处理信息，并依照信息行动的框架。<br>就像之前辛老师还说过，当他读完经济学的书之后，用经济学的角度来去看待设计，又会有不同的看。<br>所以设计思维的运作核心就是，根据一个具体的场景，从自己所了解的多个类别（角度、模型）中分别去思考这个场景，从每个模型中找到可行的点、创新的点。一个人所具备的模型（类别）数越多，能解决问题的概率越大，得到的优质解决方案的概率也越大。</p>
+<p>我们现在嚷嚷着要跨界跨界，整合整合。我觉得错是没错，但是感觉其实做的点不太准确。重要的是了解不同领域里面的思维模型、方法、工具等等，这些才是能够对解决问题起帮助的东西。</p>
+<p>当然这个观点有点不太严谨，在和小伙伴交流观点的过程中，他提到在构建图式的过程中，就存在「如何构建图式的图式」这种无限循环的问题。他点醒了我，可能构建图式的图式才叫设计思维。（也有种说法叫做元认知）被构建的图式则是做设计的图式本身。</p>
+<h2 id="建构主义和设计思维存在的关联性"><a href="#建构主义和设计思维存在的关联性" class="headerlink" title="建构主义和设计思维存在的关联性"></a>建构主义和设计思维存在的关联性</h2><p>最后简单聊聊建构主义和设计思维存在的关联性。</p>
+<p>构建主义提到了图式是指一个有组织、可重复的行为模式或心理结构，是一种认知结构的单元。一个人的全部图式对组成一个人的认知结构。<br>图式虽然最初来自先天遗传，但一经和外界接触，在适应环境的过程中，图式就不断变化、丰富和发展起来，永远不会停留在一个水平上。<br>人的认知发展中，不同的环境和条件会塑造出不同的图式。可以说一种认知结构是无法适用于所有的环境的。<br>我们会发现构建主义里的图式概念，和设计思维中的类别、角度，多元思维模型的中的单个模型非常相似。我们会发现，一个设计思维能力很强的人，他做任何事情都会做的很好，因为他有很好的认知结构，图式的数量远远多于普通人。在《设计思维中的抗解问题》中，布坎南还提到了设计是科技浪潮下的「博雅教育」这个观点。（这个观点按下不表，以后有机会再说）</p>
+<p>我觉得根本原因就是设计思维的本质就是认知结构，认知结构直接反映出了一个人的设计思维能力。</p>
+<p>（以上，期待被怼</p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/wicked-problem-and-undetermined-problem-in-design/" data-toggle="tooltip" data-placement="top" title="设计中的抗解问题与待解问题">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/from-ant-design-pro-to-umi/" data-toggle="tooltip" data-placement="top" title="从 Ant Design Pro 到 umi">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#设计思维 构建主义 设计教育" title="设计思维 构建主义 设计教育">设计思维 构建主义 设计教育</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "arvinx";
+    var disqus_identifier = "http://blog.arvinx.com/2018/fonstructivism-and-design-thinking/";
+    var disqus_url = "http://blog.arvinx.com/2018/fonstructivism-and-design-thinking/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/fan-xin-82-50">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/3799054710">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/arvinxx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/arvinx">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 空谷札记 2018 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://blog.arvinx.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'U-111118383-1';
+    var _gaDomain = 'blog.arvinx.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User by Hux
+    var _baId = '7cf3a2985214aa1de47b230484d1456a';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://blog.arvinx.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
